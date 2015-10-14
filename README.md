@@ -1,60 +1,84 @@
-# PulseTheme
-Pulse Themer
-==========
+# Pulse Theme{r}
 
-Bootswatch is a collection of free themes for [Bootstrap](http://getbootstrap.com/). Check it out at [bootswatch.com](http://bootswatch.com).
+This repo contains tools to view the current Pulse Theme Bootstrap components, and easily modify the theme if necessary. The theme generator has been modified from the [Bootswatch Project](https://github.com/thomaspark/bootswatch/).
 
-Usage
+Live Components Site
 -----
-Download the `bootstrap.min.css` file associated with a theme and replace Bootstrap's default stylesheet.
+Coming soon-ish
 
-The themes are also hosted on [BootstrapCDN](http://www.bootstrapcdn.com/bootswatch/).
+Material Design Icon Set
+-----
+Google's [Material Design Icons](https://www.google.com/design/icons/) for quick icon searching.
 
- Rails users should check out:
-
-* [twitter-bootswatch-rails](https://github.com/scottvrosenthal/twitter-bootswatch-rails) if using _LESS_.
-* [bootswatch-rails](https://github.com/maxim/bootswatch-rails) if using _SASS_.
-
-
-Customization
-------
-Bootswatch is open source and you’re welcome to modify the themes.
-
-Each theme consists of two LESS files. `variables.less`, which is included by default in Bootstrap, allows you to customize [these settings](http://getbootstrap.com/customize/#less-variables). `bootswatch.less` introduces more extensive structural changes.
-
-These files are also available in SASS.
-
-Check out the [Help page](http://bootswatch.com/help/) for more details on building your own theme.
-
-API
+Installation
 -----
 
-A simple API is available for integrating your platform with Bootswatch. Send your request to `http://api.bootswatch.com/3/`.
+#### 1)  Clone this repo
 
-The swatch objects are returned in an array called `themes`, each one with the following properties:  `name`, `description`, `preview`, `thumbnail`, `css`, `cssMin`, `less`, and `lessVariables`.
+If you already have Node, Bower, and Grunt installed you can skip to step 5.
 
-More info at http://bootswatch.com/help/#api
+#### 2)  Download the Node.js installer for your platform (Mac or Windows) - [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
-Author
+Follow the instructions for installation.  
+Check to make sure everything is properly installed in terminal with command:
+
+```
+node -v  
+v4.1.2 
+```  
+```
+npm -v  
+2.14.4
+```
+
+#### 3)  Install Bower Globally - [help](http://bower.io)
+
+```
+npm install -g bower  
+```  
+```
+bower -v  
+1.5.3
+```
+
+#### 4)  Install Grunt Globally - [help](http://gruntjs.com/getting-started)
+
+```
+npm install -g grunt-cli  
+```  
+```
+grunt -version
+grunt-cli v0.1.13
+grunt v0.4.5
+```
+
+#### 5)  Install NPM Modules and Bower Components
+
+Inside the cloned repo, run the following 2 commands
+
+```
+npm install
+```
+```
+bower install
+```
+
+#### 6)  Grunt 'grunt'
+
+The following command will spawn a local server and watch for changes to any `.less` or `.html` files:
+```
+grunt
+```
+
+Bootswatch Author
 ------
 Thomas Park
 
 + http://github.com/thomaspark
 + http://thomaspark.co
 
-Thanks
-------
-[Mark Otto](https://github.com/mdo) and [Jacob Thornton](https://github.com/fat) for [Bootstrap](https://github.com/twbs/bootstrap).
 
-[Jenil Gogari](http://www.jgog.in/) for his contributions to the Flatly theme.
-
-[James Taylor](https://github.com/jostylr) for [cors-lite](https://github.com/jostylr/cors-lite).
-
-[Corey Sewell](https://github.com/cjsewell) for SASS conversion.
-
-
-Copyright and License
+License
 ----
-Copyright 2014 Thomas Park
 
 Code released under the MIT License.
