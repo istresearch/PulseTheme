@@ -6856,6 +6856,10 @@ table .text-muted,
 .table .text-muted {
   color: #999999;
 }
+table .form-control,
+.table .form-control {
+  color: #ffffff !important;
+}
 .table-responsive > .table {
   background-color: #040404;
 }
