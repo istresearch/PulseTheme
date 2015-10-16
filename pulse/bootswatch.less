@@ -7,6 +7,7 @@
 .web-font(@path) {
   @import url("@{path}");
 }
+
 .web-font(@web-font-path);
 
 // Navbar =====================================================================
@@ -173,8 +174,7 @@ legend {
 // Navs =======================================================================
 
 .nav-tabs,
-.nav-pills
-{
+.nav-pills {
   a {
     color: @gray-darker;
   }
@@ -247,7 +247,7 @@ a.list-group-item {
     &.active {
       background-color: @state-warning-bg;
     }
-    
+
     &.active:hover,
     &.active:focus {
       background-color: darken(@state-warning-bg, 5%);
@@ -258,7 +258,7 @@ a.list-group-item {
     &.active {
       background-color: @state-danger-bg;
     }
-    
+
     &.active:hover,
     &.active:focus {
       background-color: darken(@state-danger-bg, 5%);
@@ -270,21 +270,26 @@ a.list-group-item {
   color: @white;
 }
 
-.jumbotron {
-
+.jumbotron, .well {
+  color: @white;
+  .form-control {
+    color: @white;
+  }
   h1, h2, h3, h4, h5, h6 {
     color: @white;
   }
+  .text-primary { color: @brand-primary-light;}
+  .text-success { color: @brand-success-light;}
+  .text-info { color: @brand-info-light;}
+  .text-warning { color: @brand-warning-light;}
+  .text-danger { color: @brand-danger-light;}
 }
 
 .well {
-  color: @white;
-  input, textarea, select {
-    color: @white;
-  }
+  box-shadow: @tile-shadow;
 }
 
-.panel { 
+.panel {
   border-width: 0px;
   box-shadow: @tile-shadow;
   .panel-heading {

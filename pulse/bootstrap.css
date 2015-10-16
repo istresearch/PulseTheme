@@ -5978,8 +5978,8 @@ button.close {
   filter: alpha(opacity=0);
 }
 .modal-backdrop.in {
-  opacity: 0.25;
-  filter: alpha(opacity=25);
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 .modal-header {
   padding: 15px;
@@ -6986,26 +6986,56 @@ a.list-group-item-danger.active:focus {
 .list-group-item {
   color: #ffffff;
 }
-.jumbotron h1,
-.jumbotron h2,
-.jumbotron h3,
-.jumbotron h4,
-.jumbotron h5,
-.jumbotron h6 {
-  color: #ffffff;
-}
+.jumbotron,
 .well {
   color: #ffffff;
 }
-.well input,
-.well textarea,
-.well select {
+.jumbotron .form-control,
+.well .form-control {
   color: #ffffff;
+}
+.jumbotron h1,
+.well h1,
+.jumbotron h2,
+.well h2,
+.jumbotron h3,
+.well h3,
+.jumbotron h4,
+.well h4,
+.jumbotron h5,
+.well h5,
+.jumbotron h6,
+.well h6 {
+  color: #ffffff;
+}
+.jumbotron .text-primary,
+.well .text-primary {
+  color: #097e7e;
+}
+.jumbotron .text-success,
+.well .text-success {
+  color: #0da70d;
+}
+.jumbotron .text-info,
+.well .text-info {
+  color: #a80d64;
+}
+.jumbotron .text-warning,
+.well .text-warning {
+  color: #d16710;
+}
+.jumbotron .text-danger,
+.well .text-danger {
+  color: #d11010;
+}
+.well {
+  -webkit-box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.5);
 }
 .panel {
   border-width: 0px;
-  -webkit-box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.6);
-          box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.5);
+          box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.5);
 }
 .panel .panel-heading {
   color: #ffffff;
