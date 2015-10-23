@@ -10,13 +10,27 @@
 
 .web-font(@web-font-path);
 
-// Navbar =====================================================================
+// Inverse ====================================================================
 
-.navbar-inverse {
-  input, textarea, select {
+body.inverse {
+  color: @white;
+  background-color: @gray-darker;
+  .navbar {
+    .form-control {
+      color: @white !important;
+    }
+  }
+  .form-control {
+    color: @white !important;
+  }
+  h1, h2, h3, h4, h5, h6 {
     color: @white;
   }
 }
+
+// Navbar =====================================================================
+
+
 
 // Buttons ====================================================================
 
@@ -28,6 +42,14 @@
   .btn {
     padding: 9px 12px;
   }
+}
+
+// Icons ====================================================================
+
+.material-icons {
+  line-height: inherit;
+  font-size: inherit;
+  vertical-align: bottom;
 }
 
 // Typography =================================================================

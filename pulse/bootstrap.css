@@ -4642,7 +4642,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse {
   background-color: #131313;
-  border-color: #000000;
+  border-color: #434343;
 }
 .navbar-inverse .navbar-brand {
   color: #ffffff;
@@ -4697,10 +4697,10 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 @media (max-width: 767px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
-    border-color: #000000;
+    border-color: #434343;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
-    background-color: #000000;
+    background-color: #434343;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
     color: #999999;
@@ -5314,7 +5314,7 @@ a.thumbnail.active {
 }
 a.list-group-item,
 button.list-group-item {
-  color: #666666;
+  color: #999999;
 }
 a.list-group-item .list-group-item-heading,
 button.list-group-item .list-group-item-heading {
@@ -5532,7 +5532,7 @@ button.list-group-item-danger.active:focus {
 }
 .panel-footer {
   padding: 10px 15px;
-  background-color: #131313;
+  background-color: #434343;
   border-top: 1px solid #434343;
   border-bottom-right-radius: 1px;
   border-bottom-left-radius: 1px;
@@ -5737,14 +5737,14 @@ button.list-group-item-danger.active:focus {
 }
 .panel-default > .panel-heading {
   color: #131313;
-  background-color: #131313;
+  background-color: #434343;
   border-color: #434343;
 }
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
   border-top-color: #434343;
 }
 .panel-default > .panel-heading .badge {
-  color: #131313;
+  color: #434343;
   background-color: #131313;
 }
 .panel-default > .panel-footer + .panel-collapse > .panel-body {
@@ -6798,9 +6798,22 @@ button.close {
     display: none !important;
   }
 }
-.navbar-inverse input,
-.navbar-inverse textarea,
-.navbar-inverse select {
+body.inverse {
+  color: #ffffff;
+  background-color: #131313;
+}
+body.inverse .navbar .form-control {
+  color: #ffffff !important;
+}
+body.inverse .form-control {
+  color: #ffffff !important;
+}
+body.inverse h1,
+body.inverse h2,
+body.inverse h3,
+body.inverse h4,
+body.inverse h5,
+body.inverse h6 {
   color: #ffffff;
 }
 .btn {
@@ -6808,6 +6821,11 @@ button.close {
 }
 .input-group-btn .btn {
   padding: 9px 12px;
+}
+.material-icons {
+  line-height: inherit;
+  font-size: inherit;
+  vertical-align: bottom;
 }
 .text-primary,
 .text-primary:hover {
