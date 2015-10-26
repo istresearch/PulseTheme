@@ -2589,7 +2589,7 @@ output {
 .form-control[disabled],
 .form-control[readonly],
 fieldset[disabled] .form-control {
-  background-color: #cccccc;
+  background-color: rgba(0, 0, 0, 0.2);
   opacity: 1;
 }
 .form-control[disabled],
@@ -5012,7 +5012,7 @@ a.badge:focus {
   padding-bottom: 30px;
   margin-bottom: 30px;
   color: #999999;
-  background-color: #060606;
+  background-color: #202020;
 }
 .jumbotron h1,
 .jumbotron .h1 {
@@ -5024,7 +5024,7 @@ a.badge:focus {
   font-weight: 200;
 }
 .jumbotron > hr {
-  border-top-color: #000000;
+  border-top-color: #060606;
 }
 .container .jumbotron,
 .container-fluid .jumbotron {
@@ -6061,8 +6061,8 @@ button.close {
   filter: alpha(opacity=0);
 }
 .tooltip.in {
-  opacity: 0.9;
-  filter: alpha(opacity=90);
+  opacity: 1;
+  filter: alpha(opacity=100);
 }
 .tooltip.top {
   margin-top: -3px;
@@ -6085,7 +6085,7 @@ button.close {
   padding: 3px 8px;
   color: #ffffff;
   text-align: center;
-  background-color: #000000;
+  background-color: #434343;
   border-radius: 2px;
 }
 .tooltip-arrow {
@@ -6100,56 +6100,56 @@ button.close {
   left: 50%;
   margin-left: -5px;
   border-width: 5px 5px 0;
-  border-top-color: #000000;
+  border-top-color: #434343;
 }
 .tooltip.top-left .tooltip-arrow {
   bottom: 0;
   right: 5px;
   margin-bottom: -5px;
   border-width: 5px 5px 0;
-  border-top-color: #000000;
+  border-top-color: #434343;
 }
 .tooltip.top-right .tooltip-arrow {
   bottom: 0;
   left: 5px;
   margin-bottom: -5px;
   border-width: 5px 5px 0;
-  border-top-color: #000000;
+  border-top-color: #434343;
 }
 .tooltip.right .tooltip-arrow {
   top: 50%;
   left: 0;
   margin-top: -5px;
   border-width: 5px 5px 5px 0;
-  border-right-color: #000000;
+  border-right-color: #434343;
 }
 .tooltip.left .tooltip-arrow {
   top: 50%;
   right: 0;
   margin-top: -5px;
   border-width: 5px 0 5px 5px;
-  border-left-color: #000000;
+  border-left-color: #434343;
 }
 .tooltip.bottom .tooltip-arrow {
   top: 0;
   left: 50%;
   margin-left: -5px;
   border-width: 0 5px 5px;
-  border-bottom-color: #000000;
+  border-bottom-color: #434343;
 }
 .tooltip.bottom-left .tooltip-arrow {
   top: 0;
   right: 5px;
   margin-top: -5px;
   border-width: 0 5px 5px;
-  border-bottom-color: #000000;
+  border-bottom-color: #434343;
 }
 .tooltip.bottom-right .tooltip-arrow {
   top: 0;
   left: 5px;
   margin-top: -5px;
   border-width: 0 5px 5px;
-  border-bottom-color: #000000;
+  border-bottom-color: #434343;
 }
 .popover {
   position: absolute;
@@ -6798,6 +6798,9 @@ button.close {
     display: none !important;
   }
 }
+:focus {
+  outline-color: #0caeae !important;
+}
 body.inverse {
   color: #ffffff;
   background-color: #131313;
@@ -6815,6 +6818,116 @@ body.inverse h4,
 body.inverse h5,
 body.inverse h6 {
   color: #ffffff;
+}
+body.inverse .input-group-addon {
+  color: #ffffff;
+}
+body.inverse .form-control[disabled],
+body.inverse .form-control[readonly],
+body.inverse fieldset[disabled] .form-control {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+body.inverse .nav-tabs a,
+body.inverse .nav-pills a {
+  color: #cccccc;
+}
+body.inverse .nav-tabs li a:hover,
+body.inverse .nav-pills li a:hover {
+  background-color: #434343;
+  border-bottom: 0px;
+}
+body.inverse .nav-tabs li.active a,
+body.inverse .nav-pills li.active a {
+  background-color: transparent;
+  color: #0caeae;
+  border-bottom: 0px solid #666666;
+}
+body.inverse .nav-tabs {
+  border: 0px;
+}
+body.inverse .nav-tabs li.active a {
+  background-color: transparent;
+}
+body.inverse .nav-pills li.active a {
+  background-color: #434343;
+}
+body.inverse li a:focus,
+body.inverse .open a:focus,
+body.inverse .open a {
+  background-color: transparent;
+}
+body.inverse .has-warning .help-block,
+body.inverse .has-warning .control-label,
+body.inverse .has-warning .radio,
+body.inverse .has-warning .checkbox,
+body.inverse .has-warning .radio-inline,
+body.inverse .has-warning .checkbox-inline,
+body.inverse .has-warning.radio label,
+body.inverse .has-warning.checkbox label,
+body.inverse .has-warning.radio-inline label,
+body.inverse .has-warning.checkbox-inline label,
+body.inverse .has-warning .form-control-feedback {
+  color: #d16710;
+}
+body.inverse .has-warning .form-control,
+body.inverse .has-warning .form-control:focus,
+body.inverse .has-warning .input-group-addon {
+  border-color: #d16710;
+}
+body.inverse .has-error .help-block,
+body.inverse .has-error .control-label,
+body.inverse .has-error .radio,
+body.inverse .has-error .checkbox,
+body.inverse .has-error .radio-inline,
+body.inverse .has-error .checkbox-inline,
+body.inverse .has-error.radio label,
+body.inverse .has-error.checkbox label,
+body.inverse .has-error.radio-inline label,
+body.inverse .has-error.checkbox-inline label,
+body.inverse .has-error .form-control-feedback {
+  color: #d11010;
+}
+body.inverse .has-error .form-control,
+body.inverse .has-error .form-control:focus,
+body.inverse .has-error .input-group-addon {
+  border-color: #d11010;
+}
+body.inverse .has-success .help-block,
+body.inverse .has-success .control-label,
+body.inverse .has-success .radio,
+body.inverse .has-success .checkbox,
+body.inverse .has-success .radio-inline,
+body.inverse .has-success .checkbox-inline,
+body.inverse .has-success.radio label,
+body.inverse .has-success.checkbox label,
+body.inverse .has-success.radio-inline label,
+body.inverse .has-success.checkbox-inline label,
+body.inverse .has-success .form-control-feedback {
+  color: #0da70d;
+}
+body.inverse .has-success .form-control,
+body.inverse .has-success .form-control:focus,
+body.inverse .has-success .input-group-addon {
+  border-color: #0da70d;
+}
+body.inverse .text-primary {
+  color: #097e7e;
+}
+body.inverse .text-success {
+  color: #0da70d;
+}
+body.inverse .text-info {
+  color: #a80d64;
+}
+body.inverse .text-warning {
+  color: #d16710;
+}
+body.inverse .text-danger {
+  color: #ee2626;
+}
+body.inverse .panel-body,
+body.inverse .popover-content {
+  color: #131313;
 }
 .btn {
   border-width: 0px;

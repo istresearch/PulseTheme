@@ -10,6 +10,10 @@
 
 .web-font(@web-font-path);
 
+:focus {
+  outline-color: @brand-primary-lighter !important;
+}
+
 // Inverse ====================================================================
 
 body.inverse {
@@ -25,6 +29,116 @@ body.inverse {
   }
   h1, h2, h3, h4, h5, h6 {
     color: @white;
+  }
+  .input-group-addon {
+    color: @white;
+  }
+  .form-control[disabled],
+  .form-control[readonly],
+  fieldset[disabled] .form-control {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  .nav-tabs,
+  .nav-pills {
+    a {
+      color: @gray-lighter;
+    }
+    li a:hover {
+      background-color: @gray-dark;
+      border-bottom: 0px;
+    }
+    li.active a {
+      background-color: transparent;
+      color: @brand-primary-lighter;
+      border-bottom: 0px solid @gray;
+    }
+  }
+  .nav-tabs {
+    border:0px;
+    li.active a {
+      background-color: transparent;
+    }
+  }
+  .nav-pills {
+    li.active a {
+      background-color: @gray-dark;
+    }
+  }
+  li a:focus, .open a:focus, .open a {
+    background-color: transparent;
+  }
+  .has-warning {
+    .help-block,
+    .control-label,
+    .radio,
+    .checkbox,
+    .radio-inline,
+    .checkbox-inline,
+    &.radio label,
+    &.checkbox label,
+    &.radio-inline label,
+    &.checkbox-inline label,
+    .form-control-feedback {
+      color: @brand-warning-light;
+    }
+
+    .form-control,
+    .form-control:focus,
+    .input-group-addon {
+      border-color: @brand-warning-light;
+    }
+  }
+
+  .has-error {
+    .help-block,
+    .control-label,
+    .radio,
+    .checkbox,
+    .radio-inline,
+    .checkbox-inline,
+    &.radio label,
+    &.checkbox label,
+    &.radio-inline label,
+    &.checkbox-inline label,
+    .form-control-feedback {
+      color: @brand-danger-light;
+    }
+
+    .form-control,
+    .form-control:focus,
+    .input-group-addon {
+      border-color: @brand-danger-light;
+    }
+  }
+
+  .has-success {
+    .help-block,
+    .control-label,
+    .radio,
+    .checkbox,
+    .radio-inline,
+    .checkbox-inline,
+    &.radio label,
+    &.checkbox label,
+    &.radio-inline label,
+    &.checkbox-inline label,
+    .form-control-feedback {
+      color: @brand-success-light;
+    }
+
+    .form-control,
+    .form-control:focus,
+    .input-group-addon {
+      border-color: @brand-success-light;
+    }
+  }
+  .text-primary { color: @brand-primary-light;}
+  .text-success { color: @brand-success-light;}
+  .text-info { color: @brand-info-light;}
+  .text-warning { color: @brand-warning-light;}
+  .text-danger { color: @brand-danger-lighter;}
+  .panel-body, .popover-content {
+    color:@gray-darker;
   }
 }
 
@@ -189,7 +303,6 @@ legend {
 }
 
 .input-group-addon {
-
   background-color: @input-group-addon-bg;
 }
 

@@ -15,17 +15,23 @@
 @gray-lighter:          #cccccc; // #eee
 @white:					#ffffff;
 
-@brand-primary:         #006868; //darker
+@brand-primary:         #006868; //dark
 @brand-success:         #008A00;
 @brand-info:            #8B004F;
 @brand-warning:         #AD4E00;
 @brand-danger:          #ad0000;
 
-@brand-primary-light:         #097e7e; //lighter
+@brand-primary-light:         #097e7e; //light
 @brand-success-light:         #0da70d;
 @brand-info-light:            #a80d64;
 @brand-warning-light:         #d16710;
 @brand-danger-light:          #d11010;
+
+@brand-primary-lighter:         lighten(@brand-primary-light, 10%); //lighter
+@brand-success-lighter:         lighten(@brand-success-light, 10%);
+@brand-info-lighter:            lighten(@brand-info-light, 10%);
+@brand-warning-lighter:         lighten(@brand-warning-light, 10%);
+@brand-danger-lighter:          lighten(@brand-danger-light, 10%);
 
 //== Scaffolding
 //
@@ -190,7 +196,7 @@
 //** `<input>` background color
 @input-bg:                       rgba(0, 0, 0, 0.05);
 //** `<input disabled>` background color
-@input-bg-disabled:              @gray-lighter;
+@input-bg-disabled:              rgba(0, 0, 0, 0.2);
 
 //** Text color for `<input>`s
 @input-color:                    @gray-darker;
@@ -493,7 +499,7 @@
 
 @jumbotron-padding:              30px;
 @jumbotron-color:                @gray-light;
-@jumbotron-bg:                   darken(@gray-darker, 5%);
+@jumbotron-bg:                   @well-bg;
 @jumbotron-heading-color:        inherit;
 @jumbotron-font-size:            ceil((@font-size-base * 1.5));
 @jumbotron-heading-font-size:    ceil((@font-size-base * 4.5));
@@ -527,10 +533,10 @@
 //** Tooltip max width
 @tooltip-max-width:           200px;
 //** Tooltip text color
-@tooltip-color:               #fff;
+@tooltip-color:               @white;
 //** Tooltip background color
-@tooltip-bg:                  #000;
-@tooltip-opacity:             .9;
+@tooltip-bg:                  @gray-dark;
+@tooltip-opacity:             1;
 
 //** Tooltip arrow width
 @tooltip-arrow-width:         5px;
