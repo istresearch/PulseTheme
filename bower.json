@@ -1,13 +1,10 @@
 {
-  "name": "bootswatch",
-  "description": "Bootswatch is a collection of themes for Bootstrap.",
-  "author": "Thomas Park",
-  "homepage": "http://bootswatch.com",
+  "name": "pulse-theme",
+  "description": "Pulse Themer based off Bootswatch Bootstrap Themer",
   "repository": {
     "type": "git",
-    "url": "git://github.com/thomaspark/bootswatch.git"
+    "url": "git://github.com/istresearch/PulseTheme.git"
   },
-  "license": "MIT",
   "ignore": [
     "2",
     "api",
@@ -30,13 +27,12 @@
     "package.json",
     "*/index.html"
   ],
-  "dependencies": {
-    "bootstrap": "~3.3.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "bootstrap-sass-official": "~3.3.5",
     "font-awesome": "~4.0.0",
     "html5shiv": "~3.7.0",
-    "respond": "~1.4.2"
+    "respond": "~1.4.2",
+    "bootstrap": "~3.3.5"
   }
 }
