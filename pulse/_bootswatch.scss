@@ -2,13 +2,165 @@
 // Bootswatch
 // -----------------------------------------------------
 
-$web-font-path: "https://fonts.googleapis.com/css?family=Roboto:400,700" !default;
+$web-font-path: "https://fonts.googleapis.com/css?family=Maven+Pro" !default;
 
 @import url($web-font-path);
 
+:focus {
+  outline-color: $brand-primary-lighter !important;
+}
+
+// Inverse ====================================================================
+
+body.inverse {
+  color: $white;
+  background-color: $gray-darker;
+  .navbar {
+    .form-control {
+      color: $white !important;
+    }
+  }
+  .form-control {
+    color: $white !important;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: $white;
+  }
+  .input-group-addon {
+    color: $white;
+  }
+  .form-control[disabled],
+  .form-control[readonly],
+  fieldset[disabled] .form-control {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  .nav-tabs,
+  .nav-pills {
+    a {
+      color: $gray-lighter;
+    }
+    li a:hover {
+      background-color: $gray-dark;
+      border-bottom: 0px;
+    }
+    li.active a {
+      background-color: transparent;
+      color: $brand-primary-lighter;
+      border-bottom: 0px solid $gray;
+    }
+  }
+  .nav-tabs {
+    border:0px;
+    li.active a {
+      background-color: transparent;
+    }
+  }
+  .nav-pills {
+    li.active a {
+      background-color: $gray-dark;
+    }
+  }
+  li a:focus, .open a:focus, .open a {
+    background-color: transparent;
+  }
+  .has-warning {
+    .help-block,
+    .control-label,
+    .radio,
+    .checkbox,
+    .radio-inline,
+    .checkbox-inline,
+    &.radio label,
+    &.checkbox label,
+    &.radio-inline label,
+    &.checkbox-inline label,
+    .form-control-feedback {
+      color: $brand-warning-light;
+    }
+
+    .form-control,
+    .form-control:focus,
+    .input-group-addon {
+      border-color: $brand-warning-light;
+    }
+  }
+
+  .has-error {
+    .help-block,
+    .control-label,
+    .radio,
+    .checkbox,
+    .radio-inline,
+    .checkbox-inline,
+    &.radio label,
+    &.checkbox label,
+    &.radio-inline label,
+    &.checkbox-inline label,
+    .form-control-feedback {
+      color: $brand-danger-light;
+    }
+
+    .form-control,
+    .form-control:focus,
+    .input-group-addon {
+      border-color: $brand-danger-light;
+    }
+  }
+
+  .has-success {
+    .help-block,
+    .control-label,
+    .radio,
+    .checkbox,
+    .radio-inline,
+    .checkbox-inline,
+    &.radio label,
+    &.checkbox label,
+    &.radio-inline label,
+    &.checkbox-inline label,
+    .form-control-feedback {
+      color: $brand-success-light;
+    }
+
+    .form-control,
+    .form-control:focus,
+    .input-group-addon {
+      border-color: $brand-success-light;
+    }
+  }
+  .text-primary { color: $brand-primary-light;}
+  .text-success { color: $brand-success-light;}
+  .text-info { color: $brand-info-light;}
+  .text-warning { color: $brand-warning-light;}
+  .text-danger { color: $brand-danger-lighter;}
+  .panel-body, .popover-content {
+    color:$gray-darker;
+  }
+}
+
 // Navbar =====================================================================
 
+
+
 // Buttons ====================================================================
+
+.btn {
+  border-width: 0px;
+}
+
+.input-group-btn {
+  .btn {
+    padding: 9px 12px;
+  }
+}
+
+// Icons ====================================================================
+
+.material-icons {
+  line-height: inherit;
+  font-size: inherit;
+  vertical-align: bottom;
+}
 
 // Typography =================================================================
 
@@ -49,7 +201,9 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Roboto:400,700" !defaul
 table,
 .table {
   color: #fff;
-
+  th {
+    color: $gray-light;
+  }
   a:not(.btn) {
     color: #fff;
     text-decoration: underline;
@@ -61,6 +215,10 @@ table,
 
   .text-muted {
     color: $text-muted;
+  }
+
+  .form-control {
+    color: $white !important;
   }
 }
 
@@ -137,29 +295,33 @@ table,
 }
 
 legend {
-  color: #fff;
+  color: $white;
 }
 
 .input-group-addon {
-  background-color: $btn-default-bg;
+  background-color: $input-group-addon-bg;
 }
 
 // Navs =======================================================================
 
 .nav-tabs,
-.nav-pills,
+.nav-pills {
+  a {
+    color: $gray-darker;
+  }
+}
+
 .breadcrumb,
 .pager {
-
   a {
-    color: #fff;
+    color: $white;
   }
 }
 
 // Indicators =================================================================
 
 .alert {
-
+  border-width: 0px;
   .alert-link,
   a {
     color: $alert-warning-text;
@@ -216,7 +378,7 @@ a.list-group-item {
     &.active {
       background-color: $state-warning-bg;
     }
-    
+
     &.active:hover,
     &.active:focus {
       background-color: darken($state-warning-bg, 5%);
@@ -227,7 +389,7 @@ a.list-group-item {
     &.active {
       background-color: $state-danger-bg;
     }
-    
+
     &.active:hover,
     &.active:focus {
       background-color: darken($state-danger-bg, 5%);
@@ -235,9 +397,63 @@ a.list-group-item {
   }
 }
 
-.jumbotron {
+.list-group-item {
+  color: $white;
+}
 
+.jumbotron, .well {
+  color: $white;
+  .form-control {
+    color: $white;
+  }
   h1, h2, h3, h4, h5, h6 {
-    color: #fff;
+    color: $white;
+  }
+  .text-primary { color: $brand-primary-light;}
+  .text-success { color: $brand-success-light;}
+  .text-info { color: $brand-info-light;}
+  .text-warning { color: $brand-warning-light;}
+  .text-danger { color: $brand-danger-light;}
+}
+
+.well {
+  box-shadow: $tile-shadow;
+}
+
+.panel {
+  border-width: 0px;
+  box-shadow: $tile-shadow;
+  .panel-heading {
+    color: $white;
+    border-bottom-width: 3px;
+    border-top-left-radius: $border-radius-base;
+    border-top-right-radius: $border-radius-base;
+  }
+  .panel-footer {
+    color: $gray-light;
   }
 }
+
+// Modals =============================
+
+.modal {
+  color: $white;
+  h1, h2, h3, h4, h5, h6 {
+    color: $gray-light;
+  }
+}
+
+// MISC ===============================
+
+.text-black {
+  color: $gray-darker !important;
+}
+
+.text-white {
+  color: $gray-darker !important;
+}
+
+.help-block {
+  color: $gray;
+}
+

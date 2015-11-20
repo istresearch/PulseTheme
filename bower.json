@@ -5,6 +5,7 @@
     "type": "git",
     "url": "git://github.com/istresearch/PulseTheme.git"
   },
+  "main": ["/pulse"],
   "ignore": [
     "2",
     "api",
