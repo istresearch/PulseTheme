@@ -1,14 +1,33 @@
-// Cyborg 3.3.5
-// Bootswatch
+// Pulse Theme
 // -----------------------------------------------------
 
-@web-font-path: "https://fonts.googleapis.com/css?family=Maven+Pro";
-
-.web-font(@path) {
-  @import url("@{path}");
+@font-face {
+  font-family: 'Maven Pro';
+  src: url('../fonts/Maven-Pro-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../fonts/Maven-Pro-regular.woff') format('woff'), /* Pretty Modern Browsers */
+  url('../fonts/Maven-Pro-regular.ttf')  format('truetype'); /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 400;
 }
 
-.web-font(@web-font-path);
+@font-face {
+  font-family: 'Maven Pro';
+  src: url('../fonts/Maven-Pro-700.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../fonts/Maven-Pro-700.woff') format('woff'), /* Pretty Modern Browsers */
+  url('../fonts/Maven-Pro-700.ttf')  format('truetype'); /* Safari, Android, iOS */
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'),
+  local('MaterialIcons-Regular'),
+  url('../fonts/MaterialIcons-Regular.woff2') format('woff2'),
+  url('../fonts/MaterialIcons-Regular.woff') format('woff'),
+  url('../fonts/MaterialIcons-Regular.ttf') format('ttf');
+}
 
 :focus {
   outline-color: @brand-primary-lighter !important;
@@ -459,5 +478,39 @@ a.list-group-item {
 
 .help-block {
   color: @gray;
+}
+
+// Material Icons ===========================
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+
+  // Rules for sizing the icon.
+  &.md-18 { font-size: 18px; }
+  &.md-24 { font-size: 24px; }
+  &.md-36 { font-size: 36px; }
+  &.md-48 { font-size: 48px; }
 }
 
