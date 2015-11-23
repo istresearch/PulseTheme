@@ -500,7 +500,7 @@ $pager-disabled-color:                 $gray-light !default;
 
 $jumbotron-padding:              30px !default;
 $jumbotron-color:                $gray-light !default;
-$jumbotron-bg:                   $well-bg !default;
+$jumbotron-bg:                   $gray-darker !default;
 $jumbotron-heading-color:        inherit !default;
 $jumbotron-font-size:            ceil(($font-size-base * 1.5)) !default;
 $jumbotron-heading-font-size:    ceil(($font-size-base * 4.5)) !default;
@@ -774,7 +774,7 @@ $thumbnail-caption-padding:   9px !default;
 //
 //##
 
-$well-bg:                     #202020 !default;
+$well-bg:                     $gray-darker !default;
 $well-border:                 transparent !default;
 
 
