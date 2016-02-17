@@ -1,10 +1,33 @@
-// Cyborg 3.3.5
-// Bootswatch
+// Pulse Theme
 // -----------------------------------------------------
 
-$web-font-path: "https://fonts.googleapis.com/css?family=Maven+Pro" !default;
+$font-face {
+  font-family: 'Maven Pro';
+  src: url('../fonts/Maven-Pro-regular.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../fonts/Maven-Pro-regular.woff') format('woff'), /* Pretty Modern Browsers */
+  url('../fonts/Maven-Pro-regular@include ttf')  format('truetype'); /* Safari, Android, iOS */
+  font-style: normal;
+  font-weight: 400;
+}
 
-@import url($web-font-path);
+$font-face {
+  font-family: 'Maven Pro';
+  src: url('../fonts/Maven-Pro-700.woff2') format('woff2'), /* Super Modern Browsers */
+  url('../fonts/Maven-Pro-700.woff') format('woff'), /* Pretty Modern Browsers */
+  url('../fonts/Maven-Pro-700@include ttf')  format('truetype'); /* Safari, Android, iOS */
+  font-weight: bold;
+}
+
+$font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Material Icons'),
+  local('MaterialIcons-Regular'),
+  url('../fonts/MaterialIcons-Regular.woff2') format('woff2'),
+  url('../fonts/MaterialIcons-Regular.woff') format('woff'),
+  url('../fonts/MaterialIcons-Regular@include ttf') format('ttf');
+}
 
 :focus {
   outline-color: $brand-primary-lighter !important;
@@ -133,13 +156,50 @@ body.inverse {
   .text-info { color: $brand-info-light;}
   .text-warning { color: $brand-warning-light;}
   .text-danger { color: $brand-danger-lighter;}
+
   .panel-body, .popover-content {
     color:$gray-darker;
   }
 }
 
 // Navbar =====================================================================
+.navbar-default {
+  border-color: $gray-dark;
+}
 
+.navbar-nav {
+  float: left;
+  margin: 0;
+  &.navbar-right {
+    float:right;
+  }
+}
+
+.nav>li {
+  float: left;
+}
+
+.navbar-nav>li>a {
+  @media (min-width: 768px) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  &.active {
+    color: $brand-danger-light;
+    background-color: transparent;
+  }
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  &:hover {
+    color: $white;
+    background: inherit;
+  }
+  &:active,&:focus {
+    color: $brand-danger-light;
+    background: inherit;
+  }
+}
 
 
 // Buttons ====================================================================
@@ -227,6 +287,17 @@ table,
 }
 
 // Forms ======================================================================
+
+.form-horizontal .form-group {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.form-control {
+  .transparent {
+    border: none;
+  }
+}
 
 .has-warning {
   .help-block,
@@ -413,7 +484,7 @@ a.list-group-item {
   .text-success { color: $brand-success-light;}
   .text-info { color: $brand-info-light;}
   .text-warning { color: $brand-warning-light;}
-  .text-danger { color: $brand-danger-light;}
+  .text-danger { color: $brand-danger-lighter;}
 }
 
 .well {
@@ -423,6 +494,7 @@ a.list-group-item {
 .panel {
   border-width: 0px;
   box-shadow: $tile-shadow;
+  margin-bottom: 10px;
   .panel-heading {
     color: $white;
     border-bottom-width: 3px;
@@ -445,15 +517,53 @@ a.list-group-item {
 
 // MISC ===============================
 
-.text-black {
-  color: $gray-darker !important;
-}
-
-.text-white {
-  color: $gray-darker !important;
-}
+.text-white { color: $white;}
+.text-black { color: $gray-darker; }
 
 .help-block {
   color: $gray;
 }
 
+option {
+  background-color: $gray-base;
+  color: $white;
+}
+
+// Material Icons ===========================
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+
+  // Rules for sizing the icon.
+  &.md-18 { font-size: 18px; }
+  &.md-24 { font-size: 24px; }
+  &.md-36 { font-size: 36px; }
+  &.md-48 { font-size: 48px; }
+}
+
+div.material-icons {
+  top: -4px;
+  position: relative;
+}
