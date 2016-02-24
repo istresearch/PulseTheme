@@ -151,11 +151,6 @@ body.inverse {
       border-color: @brand-success-light;
     }
   }
-  .text-primary { color: @brand-primary-light;}
-  .text-success { color: @brand-success-light;}
-  .text-info { color: @brand-info-light;}
-  .text-warning { color: @brand-warning-light;}
-  .text-danger { color: @brand-danger-lighter;}
 
   .panel-body, .popover-content {
     color:@gray-darker;
@@ -226,27 +221,27 @@ body.inverse {
 
 .text-primary,
 .text-primary:hover {
-  color: @brand-primary;
+  color: @brand-primary !important;
 }
 
 .text-success,
 .text-success:hover {
-  color: @brand-success;
+  color: @brand-success !important;
 }
 
 .text-danger,
 .text-danger:hover {
-  color: @brand-danger;
+  color: @brand-danger !important;
 }
 
 .text-warning,
 .text-warning:hover {
-  color: @brand-warning;
+  color: @brand-warning !important;
 }
 
 .text-info,
 .text-info:hover {
-  color: @brand-info;
+  color: @brand-info !important;
 }
 
 .bg-success,
@@ -274,7 +269,7 @@ table,
   }
 
   .text-muted {
-    color: @text-muted;
+    color: @text-muted !important;
   }
 
   .form-control {
@@ -480,11 +475,11 @@ a.list-group-item {
   h1, h2, h3, h4, h5, h6 {
     color: @white;
   }
-  .text-primary { color: @brand-primary-light;}
-  .text-success { color: @brand-success-light;}
-  .text-info { color: @brand-info-light;}
-  .text-warning { color: @brand-warning-light;}
-  .text-danger { color: @brand-danger-lighter;}
+  .text-primary { color: @brand-primary-light !important;}
+  .text-success { color: @brand-success-light !important;}
+  .text-info { color: @brand-info-light !important;}
+  .text-warning { color: @brand-warning-light !important;}
+  .text-danger { color: @brand-danger-lighter !important;}
 }
 
 .well {
@@ -517,8 +512,8 @@ a.list-group-item {
 
 // MISC ===============================
 
-.text-white { color: @white;}
-.text-black { color: @gray-darker; }
+.text-white { color: @white !important;}
+.text-black { color: @gray-darker !important; }
 
 .help-block {
   color: @gray;

@@ -6930,21 +6930,6 @@ body.inverse .has-success .form-control:focus,
 body.inverse .has-success .input-group-addon {
   border-color: #0da70d;
 }
-body.inverse .text-primary {
-  color: #097e7e;
-}
-body.inverse .text-success {
-  color: #0da70d;
-}
-body.inverse .text-info {
-  color: #a80d64;
-}
-body.inverse .text-warning {
-  color: #d16710;
-}
-body.inverse .text-danger {
-  color: #ee2626;
-}
 body.inverse .panel-body,
 body.inverse .popover-content {
   color: #202020;
@@ -6994,23 +6979,23 @@ body.inverse .popover-content {
 }
 .text-primary,
 .text-primary:hover {
-  color: #006868;
+  color: #006868 !important;
 }
 .text-success,
 .text-success:hover {
-  color: #008a00;
+  color: #008a00 !important;
 }
 .text-danger,
 .text-danger:hover {
-  color: #ad0000;
+  color: #ad0000 !important;
 }
 .text-warning,
 .text-warning:hover {
-  color: #ad4e00;
+  color: #ad4e00 !important;
 }
 .text-info,
 .text-info:hover {
-  color: #8b004f;
+  color: #8b004f !important;
 }
 .bg-success,
 .bg-info,
@@ -7037,7 +7022,7 @@ table .dropdown-menu a,
 }
 table .text-muted,
 .table .text-muted {
-  color: #999999;
+  color: #999999 !important;
 }
 table .form-control,
 .table .form-control {
@@ -7200,23 +7185,23 @@ a.list-group-item-danger.active:focus {
 }
 .jumbotron .text-primary,
 .well .text-primary {
-  color: #097e7e;
+  color: #097e7e !important;
 }
 .jumbotron .text-success,
 .well .text-success {
-  color: #0da70d;
+  color: #0da70d !important;
 }
 .jumbotron .text-info,
 .well .text-info {
-  color: #a80d64;
+  color: #a80d64 !important;
 }
 .jumbotron .text-warning,
 .well .text-warning {
-  color: #d16710;
+  color: #d16710 !important;
 }
 .jumbotron .text-danger,
 .well .text-danger {
-  color: #ee2626;
+  color: #ee2626 !important;
 }
 .well {
   -webkit-box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.5);
@@ -7249,10 +7234,10 @@ a.list-group-item-danger.active:focus {
   color: #999999;
 }
 .text-white {
-  color: #f5f5f5;
+  color: #f5f5f5 !important;
 }
 .text-black {
-  color: #202020;
+  color: #202020 !important;
 }
 .help-block {
   color: #666666;
