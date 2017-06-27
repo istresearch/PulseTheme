@@ -93,12 +93,13 @@ $verticalRhythm: 10px;
   font-size: $fontSize;
   font-weight: 400;
   line-height: $lineHeight;
-  color: $fontColor;
+  color: #cecece;
+    background-color: #444444;
 }
 
 @mixin formControl {
   @include formControlBase;
-  background-color: #ffffff;
+  background-color: #444444;
   border: 1px solid #DEDEDE;
   border-radius: $buttonBorderRadius;
   transition: border-color $formTransitionTiming;
