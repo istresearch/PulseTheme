@@ -13,10 +13,9 @@
       cursor: default;
     }
   }
-
-  &:hover,
-  &.active {
-    background-color: @app-links-active-background;
+    
+  &:hover {
+    background-color: #202020;
 
     .global-nav-link__anchor {
       color: @white;
@@ -77,10 +76,16 @@
     padding-left: 3px;
     line-height: @app-icon-height;
     white-space: nowrap;
+    color: #999999;
 
     .is-global-nav-open & {
       display: inline-block;
     }
+  }
+
+  .global-nav-link__title:hover,
+  .global-nav-link.active {
+      color: #ffffff;
   }
 
 .global-nav-link--close {
@@ -90,4 +95,14 @@
   .global-nav-link__icon {
     transform: translateX(1px) scaleX(-1); /* 1 */
   }
+}
+
+.global-nav-link.active
+.global-nav-link__title {
+    color: #b7e2ea;
+    background-color: @app-links-active-background;
+}
+.global-nav-link.active
+.global-nav-link__icon {
+    background-color: @app-links-active-background;
 }

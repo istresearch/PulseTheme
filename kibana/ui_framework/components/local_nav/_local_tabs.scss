@@ -14,14 +14,14 @@
     padding: 5px 0 6px 0;
     font-size: 18px;
     line-height: 22px; /* 1 */
-    color: $localTabTextColor;
+    color: $localTabTextColor--darkTheme;
     border-bottom: 2px solid transparent;
     text-decoration: none;
     cursor: pointer;
 
     &:hover,
     &:active {
-      color: $localTabTextColor-isHover;
+      color: $localTabTextColor-isHover--darkTheme;
 
       @include darkTheme {
         color: $localTabTextColor-isHover--darkTheme;
@@ -29,8 +29,8 @@
     }
 
     &.kuiLocalTab-isSelected {
-      color: $localTabTextColor-isSelected;
-      border-bottom-color: $localTabTextColor-isSelected;
+      color: $localTabTextColor-isSelected--darkTheme;
+      border-bottom-color: $localTabTextColor-isSelected--darkTheme;
       cursor: default;
 
       @include darkTheme {

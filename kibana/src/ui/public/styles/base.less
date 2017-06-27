@@ -2,6 +2,7 @@
 @import (reference) "./mixins";
 @import (reference) "./variables";
 @import (reference) "~ui/styles/bootstrap/bootstrap";
+@import (reference) "~ui/styles/dark-variables.less";
 
 html,
 body {
@@ -94,7 +95,7 @@ ul.navbar-inline li {
   .flex-parent(@shrink: 0);
   position: relative;
   z-index: 0;
-  background-color: @white;
+  background-color: #272727;
 }
 
 .top-fixed {
@@ -272,6 +273,7 @@ paginated-selectable-list {
     padding: 10px;
     display: flex;
     flex-direction: row;
+    background-color: #272727;
   }
 
   .finder-hit-count,
@@ -302,13 +304,13 @@ paginated-selectable-list {
 
     input {
       border: none;
-      padding: 5px 0px;
+      //padding: 5px 0px;
       border-radius: @border-radius-base;
     }
 
     span {
       padding: 5px 0px;
-      background-color: @white;
+      background-color: #777777;
       border: none;
 
       i {
@@ -324,16 +326,16 @@ paginated-selectable-list {
     }
 
     li:nth-child(odd) {
-      background-color: @kibanaGray6;
+      background-color: @gray3;
     }
 
     li:nth-child(even) {
-      background-color: @white;
+      background-color: @gray4;
     }
 
     .paginate-heading {
       font-weight: normal;
-      color: @kibanaGray1;
+      color: @text-color;
     }
 
     .list-group-item {
@@ -577,12 +579,12 @@ fieldset {
   }
 
   .panel-heading-elasticsearch {
-    background-color: @product-elasticsearch;
+    background-color: #333333;//@product-elasticsearch;
     background-image: url("~ui/icons/elasticsearch.svg");
   }
 
   .panel-heading-kibana {
-    background-color: @product-kibana;
+    background-color: #333333;//@product-kibana;
     background-image: url("~ui/icons/kibana.svg");
   }
 
@@ -609,12 +611,12 @@ fieldset {
 }
 
 .page-row-text {
-  color: @kibanaGray2;
+  color: #9C9C9C;
   font-size: 14px;
 }
 
 .kuiView {
-  background-color: #FFFFFF;
+  background-color: #272727;
   flex: 1 1 auto;
 }
 
