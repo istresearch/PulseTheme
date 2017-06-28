@@ -1,10 +1,11 @@
-@import (reference) "~ui/styles/variables";
+//@import (reference) "~ui/styles/variables";
 @import (reference) "~ui/styles/mixins";
+@import "~ui/styles/dark-variables.less";
 
 .sidebar-container {
   padding-left: 0px !important;
   padding-right: 0px !important;
-  background-color: @sidebar-bg;
+  background-color: #333333;
   border-right-color: @sidebar-border;
   border-bottom-color: @sidebar-border;
 
@@ -140,8 +141,9 @@
     padding: 5px 10px;
     display: flex;
     justify-content: space-between;
-    background-color: @kibanaGray4;
+    background-color: @kibanaGray2;
     line-height: 28px;
+    color: @link-color;
 
     > * {
       flex: 0 1 auto;
@@ -153,9 +155,10 @@
   }
 
   .index-pattern-selection .sidebar-item-title {
-    background-color: @sidebar-index-pattern-selection-bg;
+    background-color: #525252;
+      color: @sidebar-index-pattern-selection-bg;
     &:hover {
-      background-color: @sidebar-index-pattern-selection-bg-hover;
+      background-color: #222222;
     }
   }
 

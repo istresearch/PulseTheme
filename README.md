@@ -82,3 +82,6 @@ License
 ----
 
 Code released under the MIT License.
+
+# Pulse Theme
+See https://github.com/istresearch/PulseTheme/blob/PULSE-4096/kibana/THEME_README.md for more documentation.

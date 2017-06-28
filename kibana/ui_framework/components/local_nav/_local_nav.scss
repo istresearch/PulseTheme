@@ -8,8 +8,8 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 70px; /* 1 */
-  color: $localNavTextColor;
-  background-color: $localNavBackgroundColor;
+  color: $localNavTextColor--darkTheme;
+  background-color: $localNavBackgroundColor--darkTheme;
 
   @include darkTheme {
     color: $localNavTextColor--darkTheme;

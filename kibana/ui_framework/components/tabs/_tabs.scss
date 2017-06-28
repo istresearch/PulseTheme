@@ -11,9 +11,9 @@
     cursor: pointer;
     padding: 10px 30px;
     font-size: 14px;
-    color: $subduedFontColor;
-    background-color: #ffffff; /* 1 */
-    border: 1px solid $standoutBackgroundColor;
+    color: #B7E2EA;
+    background-color: #272727; /* 1 */
+    border: 1px solid #666666;
     border-bottom: none;
     border-radius: 0; /* 1 */
 
@@ -28,7 +28,7 @@
     }
 
     &:hover:not(.kuiTab-isSelected) {
-      color: $linkHoverColor;
+      color: #ffffff;
     }
 
     &:active {
@@ -39,8 +39,8 @@
     }
 
     &.kuiTab-isSelected {
-      color: $fontColor;
-      background-color: #F2F2F2;
+      color: #eeeeee;
+      background-color: #454545;
       cursor: default;
     }
   }

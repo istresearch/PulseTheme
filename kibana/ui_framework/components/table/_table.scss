@@ -20,16 +20,17 @@ $tableCellPadding: 7px 8px 8px;
  */
 .kuiTable {
   width: 100%;
-  border: $tableBorder;
+  //border: $tableBorder;
   border-collapse: collapse;
-  background-color: #FFFFFF;
+  background-color: #272727;
 }
 
 .kuiTableHeaderCell {
   @include tableCell;
   padding: $tableCellPadding;
   line-height: $lineHeight;
-  color: #a7a7a7;
+  color: #cecece;
+  border-bottom: $tableBorder;
 }
 
 /**
@@ -68,7 +69,7 @@ $tableCellPadding: 7px 8px 8px;
 
 .kuiTableRowCell {
   @include tableCell;
-  color: $fontColor;
+  color: #cecece;
   border-top: $tableRowBorder;
 }
 

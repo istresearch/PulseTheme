@@ -11,16 +11,16 @@ $localSearchHeight: 30px;
   flex: 1 1 100%;
   padding: 5px 15px;
   font-size: $localNavFontSizeNormal;
-  color: $localNavTextColor;
-  background-color: $localSearchBackgroundColor;
-  border: 2px solid $localSearchBackgroundColor;
+  color: $localNavTextColor--darkTheme;
+  background-color: $localSearchBackgroundColor--darkTheme;
+  border: 2px solid $localSearchBackgroundColor--darkTheme;
   border-bottom-left-radius: 4px;
   border-top-left-radius: 4px;
   border-bottom-right-radius: 0;
   border-top-right-radius: 0;
 
   &.kuiLocalSearchInput-isInvalid {
-    border-color: $localSearchBorderColor-isInvalid;
+    border-color: $localSearchBorderColor-isInvalid--darkTheme;
   }
 
   @include darkTheme {
@@ -38,8 +38,8 @@ $localSearchHeight: 30px;
   width: 43px;
   height: $localSearchHeight;
   font-size: $localNavFontSizeNormal;
-  color: $buttonTextColor;
-  background-color: $buttonBackgroundColor;
+  color: $buttonTextColor--darkTheme;
+  background-color: $buttonBackgroundColor--darkTheme;
   border: 0;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
