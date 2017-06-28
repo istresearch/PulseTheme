@@ -1,0 +1,46 @@
+.kuiTabs {
+  display: flex;
+  border-bottom: $tableBorder;
+}
+
+  /**
+   * 1. Override button styles (some of which are from Bootstrap).
+   */
+  .kuiTab {
+    appearance: none; /* 1 */
+    cursor: pointer;
+    padding: 10px 30px;
+    font-size: 14px;
+    color: #B7E2EA;
+    background-color: #272727; /* 1 */
+    border: 1px solid #666666;
+    border-bottom: none;
+    border-radius: 0; /* 1 */
+
+    & + & {
+      border-left: none;
+    }
+
+    &:focus {
+      color: $linkColor;
+      z-index: 1;
+      outline: 1px solid $selectedBorderColor !important; /* 1 */
+    }
+
+    &:hover:not(.kuiTab-isSelected) {
+      color: #ffffff;
+    }
+
+    &:active {
+      outline: none;
+      border-color: #ffffff;
+      box-shadow: none; /* 1 */
+      color: $linkColor !important;
+    }
+
+    &.kuiTab-isSelected {
+      color: #eeeeee;
+      background-color: #454545;
+      cursor: default;
+    }
+  }

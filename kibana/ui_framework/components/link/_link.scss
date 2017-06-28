@@ -1,0 +1,14 @@
+.kuiLink {
+  color: #b7e2ea;
+  text-decoration: none;
+
+  &:visited,
+  &:active {
+//    color: #3CAED2;
+  }
+
+  &:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+}
