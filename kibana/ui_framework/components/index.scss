@@ -100,7 +100,7 @@ $verticalRhythm: 10px;
 @mixin formControl {
   @include formControlBase;
   background-color: #444444;
-  border: 1px solid #DEDEDE;
+  border: 1px solid #666666;
   border-radius: $buttonBorderRadius;
   transition: border-color $formTransitionTiming;
 
@@ -208,8 +208,8 @@ $verticalRhythm: 10px;
   }
 
   .kuiButton--basic {
-    color: #5a5a5a;
-    background-color: #FFFFFF;
+    color: #eeeeee;
+    background-color: #444444;
 
     &:disabled {
       color: #a7a7a7;
