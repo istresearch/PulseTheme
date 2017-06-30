@@ -82,3 +82,6 @@ License
 ----
 
 Code released under the MIT License.
+
+# Pulse Theme
+See PulseTheme/kibana/README.md for more documentation.
