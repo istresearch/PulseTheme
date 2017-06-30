@@ -1,0 +1,26 @@
+@import (reference) "~ui/styles/theme";
+@import "~ui/styles/dark-variables.less";
+
+.list-group-menu {
+  &.select-mode a {
+     outline: none;
+     color: @list-group-menu-item-select-color;
+  }
+
+  .list-group-menu-item {
+    list-style: none;
+    color: @list-group-menu-item-color;
+
+    &.active {
+      font-weight: bold;
+      background-color: @list-group-menu-item-active-bg;
+    }
+    &:hover {
+      background-color: #222222;
+    }
+    li {
+      list-style: none;
+      color: @list-group-menu-item-color;
+    }
+  }
+}

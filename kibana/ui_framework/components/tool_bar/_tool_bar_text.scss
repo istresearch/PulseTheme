@@ -1,0 +1,9 @@
+/*
+ * 1. We don't want the text to take up two lines and overflow the ToolBar.
+ */
+.kuiToolBarText {
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  color: #9C9C9C;
+  white-space: nowrap; /* 1 */
+}
