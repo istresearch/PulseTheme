@@ -1,5 +1,3 @@
-import _ from 'lodash';
-
 import { Squeeze } from 'good-squeeze';
 import { createWriteStream as writeStr } from 'fs';
 
@@ -34,6 +32,9 @@ module.exports = class KbnLogger {
 
     emitter.on('stop', () => {
       this.output.unpipe(this.dest);
+      if (this.dest !== process.stdout) {
+        this.dest.end();
+      }
     });
 
     callback();

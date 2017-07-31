@@ -7,25 +7,26 @@ import 'ui/collapsible_sidebar';
 import 'ui/share';
 import chrome from 'ui/chrome';
 import angular from 'angular';
-import Notifier from 'ui/notify/notifier';
-import RegistryVisTypesProvider from 'ui/registry/vis_types';
-import DocTitleProvider from 'ui/doc_title';
-import UtilsBrushEventProvider from 'ui/utils/brush_event';
-import FilterBarQueryFilterProvider from 'ui/filter_bar/query_filter';
-import FilterBarFilterBarClickHandlerProvider from 'ui/filter_bar/filter_bar_click_handler';
-import stateMonitorFactory from 'ui/state_management/state_monitor_factory';
+import { Notifier } from 'ui/notify/notifier';
+import { VisTypesRegistryProvider } from 'ui/registry/vis_types';
+import { DocTitleProvider } from 'ui/doc_title';
+import { UtilsBrushEventProvider } from 'ui/utils/brush_event';
+import { FilterBarQueryFilterProvider } from 'ui/filter_bar/query_filter';
+import { FilterBarClickHandlerProvider } from 'ui/filter_bar/filter_bar_click_handler';
+import { stateMonitorFactory } from 'ui/state_management/state_monitor_factory';
 import uiRoutes from 'ui/routes';
-import uiModules from 'ui/modules';
+import { uiModules } from 'ui/modules';
 import editorTemplate from 'plugins/kibana/visualize/editor/editor.html';
 import { DashboardConstants } from 'plugins/kibana/dashboard/dashboard_constants';
 import { VisualizeConstants } from '../visualize_constants';
+import { documentationLinks } from 'ui/documentation_links/documentation_links';
 
 uiRoutes
 .when(VisualizeConstants.CREATE_PATH, {
   template: editorTemplate,
   resolve: {
     savedVis: function (savedVisualizations, courier, $route, Private) {
-      const visTypes = Private(RegistryVisTypesProvider);
+      const visTypes = Private(VisTypesRegistryProvider);
       const visType = _.find(visTypes, { name: $route.current.params.type });
       if (visType.requiresSearch && !$route.current.params.indexPattern && !$route.current.params.savedSearchId) {
         throw new Error('You must provide either an indexPattern or a savedSearchId');
@@ -66,21 +67,24 @@ uiModules
   };
 });
 
-function VisEditor($scope, $route, timefilter, AppState, $window, kbnUrl, courier, Private, Promise) {
+function VisEditor($rootScope, $scope, $route, timefilter, AppState, $window, kbnUrl, courier, Private, Promise, kbnBaseUrl) {
   const docTitle = Private(DocTitleProvider);
   const brushEvent = Private(UtilsBrushEventProvider);
   const queryFilter = Private(FilterBarQueryFilterProvider);
-  const filterBarClickHandler = Private(FilterBarFilterBarClickHandlerProvider);
+  const filterBarClickHandler = Private(FilterBarClickHandlerProvider);
 
   const notify = new Notifier({
     location: 'Visualization Editor'
   });
 
   let stateMonitor;
-  const $appStatus = this.appStatus = {};
 
   // Retrieve the resolved SavedVis instance.
   const savedVis = $route.current.locals.savedVis;
+
+  const $appStatus = this.appStatus = {
+    dirty: !savedVis.id
+  };
 
   // Instance of src/ui/public/vis/vis.js.
   const vis = savedVis.vis;
@@ -165,6 +169,8 @@ function VisEditor($scope, $route, timefilter, AppState, $window, kbnUrl, courie
     $scope.indexPattern = vis.indexPattern;
     $scope.editableVis = editableVis;
     $scope.state = $state;
+    $scope.queryDocLinks = documentationLinks.query;
+    $scope.dateDocLinks = documentationLinks.date;
 
     // Create a PersistedState instance.
     $scope.uiState = $state.makeStateful('uiState');
@@ -186,7 +192,7 @@ function VisEditor($scope, $route, timefilter, AppState, $window, kbnUrl, courie
 
     stateMonitor = stateMonitorFactory.create($state, stateDefaults);
     stateMonitor.ignoreProps([ 'vis.listeners' ]).onChange((status) => {
-      $appStatus.dirty = status.dirty;
+      $appStatus.dirty = status.dirty || !savedVis.id;
     });
     $scope.$on('$destroy', () => stateMonitor.destroy());
 
@@ -219,8 +225,11 @@ function VisEditor($scope, $route, timefilter, AppState, $window, kbnUrl, courie
       return savedVis.lastSavedTitle || `${savedVis.title} (unsaved)`;
     };
 
-    $scope.$watch('searchSource.get("index").timeFieldName', function (timeField) {
-      timefilter.enabled = !!timeField;
+    $scope.$watchMulti([
+      'searchSource.get("index").timeFieldName',
+      'vis.type.requiresTimePicker',
+    ], function ([timeField, requiresTimePicker]) {
+      timefilter.enabled = Boolean(timeField || requiresTimePicker);
     });
 
     // update the searchSource when filters update
@@ -279,6 +288,8 @@ function VisEditor($scope, $route, timefilter, AppState, $window, kbnUrl, courie
   }
 
   $scope.fetch = function () {
+    // This is used by some plugins to trigger a fetch (Timelion and Time Series Visual Builder)
+    $rootScope.$broadcast('fetch');
     $state.save();
     searchSource.set('filter', queryFilter.getFilters());
     if (!$state.linked) searchSource.set('query', $state.query);
@@ -293,6 +304,7 @@ function VisEditor($scope, $route, timefilter, AppState, $window, kbnUrl, courie
   $scope.doSave = function () {
     // vis.title was not bound and it's needed to reflect title into visState
     $state.vis.title = savedVis.title;
+    $state.vis.type = savedVis.type || $state.vis.type;
     savedVis.visState = $state.vis;
     savedVis.uiStateJSON = angular.toJson($scope.uiState.getChanges());
 
@@ -304,18 +316,27 @@ function VisEditor($scope, $route, timefilter, AppState, $window, kbnUrl, courie
       if (id) {
         notify.info('Saved Visualization "' + savedVis.title + '"');
         if ($scope.isAddToDashMode()) {
+          const savedVisualizationUrl =
+            kbnUrl.eval(`${kbnBaseUrl}#${VisualizeConstants.EDIT_PATH}/{{id}}`, { id: savedVis.id });
+
+          // Manually insert a new url so the back button will open the saved visualization.
+          $window.history.pushState({}, '', `${chrome.getBasePath()}${savedVisualizationUrl}`);
+          // Since we aren't reloading the page, only inserting a new browser history item, we need to manually update
+          // the last url for this app, so directly clicking on the Visualize tab will also bring the user to the saved
+          // url, not the unsaved one.
+          chrome.trackSubUrlForApp('kibana:visualize', savedVisualizationUrl);
+
           const dashboardBaseUrl = chrome.getNavLinkById('kibana:dashboard');
-          // Not using kbnUrl.change here because the dashboardBaseUrl is a full path, not a url suffix.
-          // Rather than guess the right substring, we'll just navigate there directly, just as if the user
-          // clicked the dashboard link in the UI.
-          $window.location.href = `${dashboardBaseUrl.lastSubUrl}&${DashboardConstants.NEW_VISUALIZATION_ID_PARAM}=${savedVis.id}`;
+          const dashUrlPieces = dashboardBaseUrl.lastSubUrl.match(/(.*)kibana#(.*)/);
+          const dashSubUrl = `${dashUrlPieces[2]}&${DashboardConstants.NEW_VISUALIZATION_ID_PARAM}={{id}}`;
+          kbnUrl.change(dashSubUrl, { id: savedVis.id });
         } else if (savedVis.id === $route.current.params.id) {
           docTitle.change(savedVis.lastSavedTitle);
         } else {
           kbnUrl.change(`${VisualizeConstants.EDIT_PATH}/{{id}}`, { id: savedVis.id });
         }
       }
-    }, notify.fatal);
+    }, notify.error);
   };
 
   $scope.unlink = function () {

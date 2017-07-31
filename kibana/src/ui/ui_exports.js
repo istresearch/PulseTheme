@@ -3,6 +3,7 @@ import minimatch from 'minimatch';
 
 import UiAppCollection from './ui_app_collection';
 import UiNavLinkCollection from './ui_nav_link_collection';
+import { MappingsCollection } from './ui_mappings';
 
 class UiExports {
   constructor({ urlBasePath }) {
@@ -15,6 +16,7 @@ class UiExports {
     this.bundleProviders = [];
     this.defaultInjectedVars = {};
     this.injectedVarsReplacers = [];
+    this.mappings = new MappingsCollection();
   }
 
   consumePlugin(plugin) {
@@ -41,6 +43,16 @@ class UiExports {
     this.consumers.push(consumer);
   }
 
+  addConsumerForType(typeToConsume, consumer) {
+    this.consumers.push({
+      exportConsumer(uiExportType) {
+        if (uiExportType === typeToConsume) {
+          return consumer;
+        }
+      }
+    });
+  }
+
   exportConsumer(type) {
     for (const consumer of this.consumers) {
       if (!consumer.exportConsumer) continue;
@@ -52,7 +64,6 @@ class UiExports {
       case 'app':
       case 'apps':
         return (plugin, specs) => {
-          const id = plugin.id;
           for (const spec of [].concat(specs || [])) {
 
             const app = this.apps.new(_.defaults({}, spec, {
@@ -71,8 +82,8 @@ class UiExports {
 
       case 'link':
       case 'links':
-        return (plugin, spec) => {
-          for (const spec of [].concat(spec || [])) {
+        return (plugin, specs) => {
+          for (const spec of [].concat(specs || [])) {
             this.navLinks.new(spec);
           }
         };
@@ -113,6 +124,11 @@ class UiExports {
           plugin.extendInit(async (server, options) => {
             _.merge(this.defaultInjectedVars, await injector.call(plugin, server, options));
           });
+        };
+
+      case 'mappings':
+        return (plugin, mappings) => {
+          this.mappings.register(mappings, { plugin: plugin.id });
         };
 
       case 'replaceInjectedVars':

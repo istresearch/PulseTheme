@@ -1,15 +1,14 @@
-import FetchProvider from '../fetch';
-import SearchStrategyProvider from '../fetch/strategy/search';
-import RequestQueueProvider from '../_request_queue';
-import LooperProvider from './_looper';
+import { FetchProvider } from '../fetch';
+import { SearchStrategyProvider } from '../fetch/strategy/search';
+import { RequestQueueProvider } from '../_request_queue';
+import { LooperProvider } from './_looper';
 
-export default function SearchLooperService(Private, Promise, Notifier, $rootScope) {
+export function SearchLooperProvider(Private, Promise, Notifier, $rootScope) {
   const fetch = Private(FetchProvider);
   const searchStrategy = Private(SearchStrategyProvider);
   const requestQueue = Private(RequestQueueProvider);
 
   const Looper = Private(LooperProvider);
-  const notif = new Notifier({ location: 'Search Looper' });
 
   /**
    * The Looper which will manage the doc fetch interval

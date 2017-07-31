@@ -5,7 +5,7 @@ import expect from 'expect.js';
 import url from 'url';
 import SetupError from '../setup_error';
 
-import serverConfig from '../../../../../test/server_config';
+import { esTestServerUrlParts } from '../../../../../test/es_test_server_url_parts';
 import { ensureEsVersion } from '../ensure_es_version';
 
 describe('plugins/elasticsearch', () => {
@@ -13,8 +13,6 @@ describe('plugins/elasticsearch', () => {
     const KIBANA_VERSION = '5.1.0';
 
     let server;
-    let plugin;
-    let callWithInternalUser;
 
     beforeEach(function () {
       server = {
@@ -29,7 +27,7 @@ describe('plugins/elasticsearch', () => {
             status: {
               red: sinon.stub()
             },
-            url: url.format(serverConfig.servers.elasticsearch)
+            url: url.format(esTestServerUrlParts)
           }
         }
       };
@@ -58,14 +56,12 @@ describe('plugins/elasticsearch', () => {
 
       const cluster = server.plugins.elasticsearch.getCluster('admin');
       cluster.callWithInternalUser.withArgs('nodes.info', sinon.match.any).returns(Promise.resolve({ nodes: nodes }));
-      callWithInternalUser = cluster.callWithInternalUser;
     }
 
     function setNodeWithoutHTTP(version) {
       const nodes = { 'node-without-http': { version, ip: 'ip' } };
       const cluster = server.plugins.elasticsearch.getCluster('admin');
       cluster.callWithInternalUser.withArgs('nodes.info', sinon.match.any).returns(Promise.resolve({ nodes: nodes }));
-      callWithInternalUser = cluster.callWithInternalUser;
     }
 
     it('returns true with single a node that matches', async () => {

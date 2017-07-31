@@ -1,6 +1,6 @@
 import d3 from 'd3';
 import d3TagCloud from 'd3-cloud';
-import vislibComponentsSeedColorsProvider from 'ui/vis/components/color/seed_colors';
+import { seedColors } from 'ui/vis/components/color/seed_colors';
 import { EventEmitter } from 'events';
 
 const ORIENTATIONS = {
@@ -76,9 +76,7 @@ class TagCloud extends EventEmitter {
   resize() {
     const newWidth = this._element.offsetWidth;
     const newHeight = this._element.offsetHeight;
-    if (newWidth < 1 || newHeight < 1) {
-      return;
-    }
+
     if (newWidth === this._size[0] && newHeight === this._size[1]) {
       return;
     }
@@ -240,12 +238,12 @@ class TagCloud extends EventEmitter {
           resolve(true);
         }
       };
-      exitTransition.each(_ => exits++);
+      exitTransition.each(() => exits++);
       exitTransition.each('end', () => {
         exits--;
         resolveWhenDone();
       });
-      movingTags.each(_ => moves++);
+      movingTags.each(() => moves++);
       movingTags.each('end', () => {
         moves--;
         resolveWhenDone();
@@ -386,7 +384,7 @@ function getSizeInPixels(tag) {
   return `${tag.size}px`;
 }
 
-const colorScale = d3.scale.ordinal().range(vislibComponentsSeedColorsProvider());
+const colorScale = d3.scale.ordinal().range(seedColors);
 function getFill(tag) {
   return colorScale(tag.text);
 }

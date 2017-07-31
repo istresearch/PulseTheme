@@ -2,7 +2,7 @@ import _ from 'lodash';
 import chrome from 'ui/chrome/chrome';
 import breadCrumbsTemplate from './bread_crumbs.html';
 import { getBreadCrumbUrls } from './bread_crumb_urls';
-import uiModules from 'ui/modules';
+import { uiModules } from 'ui/modules';
 const module = uiModules.get('kibana');
 
 module.directive('breadCrumbs', function ($location) {
@@ -30,22 +30,19 @@ module.directive('breadCrumbs', function ($location) {
     },
     template: breadCrumbsTemplate,
     controller: function ($scope) {
-      // Capitalize the first letter of each bread crumb.
-      $scope.breadcrumbs = chrome.getBreadcrumbs().map(breadcrumb => _.startCase(breadcrumb));
-
-      if ($scope.omitCurrentPage === true) {
-        $scope.breadcrumbs.pop();
-      }
-
-      if ($scope.omitPages) {
-        $scope.breadcrumbs = $scope.breadcrumbs.filter(breadcrumb =>
-          !$scope.omitPages.includes(breadcrumb.toLowerCase())
-        );
-      }
+      const breadcrumbs = chrome.getBreadcrumbs();
 
       if ($scope.useLinks) {
         const url = '#' + $location.path();
-        $scope.breadCrumbUrls = getBreadCrumbUrls($scope.breadcrumbs, url);
+        $scope.breadcrumbs = getBreadCrumbUrls(breadcrumbs, url);
+      } else {
+        $scope.breadcrumbs = breadcrumbs.map(path => ({
+          path: path,
+          title: _.startCase(path)
+        }));
+      }
+      if ($scope.omitCurrentPage === true) {
+        $scope.breadcrumbs.pop();
       }
     }
   };

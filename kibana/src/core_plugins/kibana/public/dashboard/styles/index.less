@@ -1,9 +1,13 @@
 @import (reference) "~ui/styles/variables";
 @import (reference) "~ui/styles/mixins";
-@import (reference) "~ui/styles/dark-variables.less";
+@import "~ui/styles/local_search.less";
 
 .tab-dashboard {
   background-color: @dashboard-bg;
+}
+
+.dashboardCloneModal {
+  width: 450px;
 }
 
 dashboard-grid {
@@ -35,29 +39,37 @@ dashboard-grid {
   }
 
   .gs-w {
-    border: 2px dashed transparent;
-
-    .panel .panel-heading .btn-group {
-      display: none;
-    }
 
     &:hover {
-      border-color: @kibanaGray4;
 
       dashboard-panel {
         .visualize-show-spy {
           visibility: visible;
         }
-        .panel .panel-heading .btn-group {
-          display: block !important;
-        }
       }
 
+    }
+    .panel--edit-mode {
+      border-color: @kibanaGray4;
+      .visualize-show-spy {
+        visibility: visible;
+      }
     }
   }
 
   i.remove {
     cursor: pointer;
+  }
+}
+
+.panel {
+  border: 2px dashed transparent;
+}
+
+.panel--edit-mode {
+  border-color: @kibanaGray4;
+  .visualize-show-spy {
+    visibility: visible;
   }
 }
 
@@ -67,6 +79,10 @@ dashboard-grid {
   flex-direction: column;
 }
 
+/**
+ * 1. Fix Firefox bug where a value of overflow: hidden will prevent scrolling in a panel where the spy panel does
+ * not have enough room.
+ */
 dashboard-panel {
   flex: 1;
   display: flex;
@@ -76,7 +92,7 @@ dashboard-panel {
   background: @dashboard-panel-bg;
   color: @dashboard-panel-color;
   padding: 0;
-  overflow: hidden;
+  overflow: auto; /* 1 */
   position: relative;
 
   .panel {
@@ -89,7 +105,6 @@ dashboard-panel {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    border: 0 solid transparent;
 
     .panel-heading {
       padding: 0px 0px 0px 5px;
@@ -98,16 +113,8 @@ dashboard-panel {
       display: flex;
       border-top-right-radius: 0;
       border-top-left-radius: 0;
-      background-color: #272727;
+      background-color: @white;
       border: none;
-
-      .btn-group {
-        a {
-          color: inherit;
-        }
-        white-space: nowrap;
-        flex: 0 0 auto;
-      }
 
       .panel-title {
         font-size: inherit;
@@ -128,16 +135,6 @@ dashboard-panel {
 
       .panel-move:hover {
         cursor: move;
-      }
-
-      a {
-        color: @dashboard-panel-heading-link-color;
-        border: none;
-        background: none;
-        padding: 0px 3px;
-        &:hover {
-          color: @dashboard-panel-heading-link-hover-color;
-        }
       }
     }
 

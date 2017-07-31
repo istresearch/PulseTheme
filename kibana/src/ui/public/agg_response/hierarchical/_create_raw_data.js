@@ -1,6 +1,7 @@
 import _ from 'lodash';
-import extractBuckets from 'ui/agg_response/hierarchical/_extract_buckets';
-export default function (vis, resp) {
+import { extractBuckets } from 'ui/agg_response/hierarchical/_extract_buckets';
+
+export function createRawData(vis, resp) {
 
   // Create the initial results structure
   const results = { rows: [] };
@@ -29,7 +30,7 @@ export default function (vis, resp) {
       aggConfig: agg,
       aggType: agg.type,
       field: agg.params.field,
-      label: agg.type.makeLabel(agg)
+      label: agg.makeLabel()
     };
   })
   .value();

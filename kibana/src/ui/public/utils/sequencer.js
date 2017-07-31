@@ -25,7 +25,7 @@ function create(min, max, length, mod) {
   return seq;
 }
 
-export default {
+export const sequencer = {
   /**
    * Create an exponential sequence of numbers.
    *
@@ -48,7 +48,7 @@ export default {
    * @param {number} length - the number of values to produce
    * @return {number[]} - an array containing the sequence
    */
-  createEaseIn: _.partialRight(create, function (i, length) {
+  createEaseIn: _.partialRight(create, function (i) {
     // generates numbers from 1 to +Infinity
     return i * Math.pow(i, 1.1111);
   }),

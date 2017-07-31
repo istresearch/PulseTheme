@@ -1,11 +1,11 @@
 import _ from 'lodash';
 import $ from 'jquery';
-import Binder from 'ui/binder';
+import { Binder } from 'ui/binder';
 import chrome from 'ui/chrome';
 import 'gridster';
-import uiModules from 'ui/modules';
+import { uiModules } from 'ui/modules';
+import { DashboardViewMode } from 'plugins/kibana/dashboard/dashboard_view_mode';
 import { PanelUtils } from 'plugins/kibana/dashboard/panel/panel_utils';
-import { getPersistedStateId } from 'plugins/kibana/dashboard/panel/panel_state';
 
 const app = uiModules.get('app/dashboard');
 
@@ -14,10 +14,21 @@ app.directive('dashboardGrid', function ($compile, Notifier) {
     restrict: 'E',
     scope: {
       /**
+       * What view mode the dashboard is currently in - edit or view only.
+       * @type {DashboardViewMode}
+       */
+      dashboardViewMode: '=',
+      /**
        * Used to create a child persisted state for the panel from parent state.
        * @type {function} - Returns a {PersistedState} child uiState for this scope.
        */
       createChildUiState: '=',
+      /**
+       * Registers an index pattern with the dashboard app used by each panel. The index patterns are used by the
+       * filter bar for generating field suggestions.
+       * @type {function(IndexPattern)}
+       */
+      registerPanelIndexPattern: '=',
       /**
        * Trigger after a panel has been removed from the grid.
        */
@@ -31,12 +42,12 @@ app.directive('dashboardGrid', function ($compile, Notifier) {
        * Returns a click handler for a visualization.
        * @type {function}
        */
-      getVisClickHandler: '&',
+      getVisClickHandler: '=',
       /**
        * Returns a brush event handler for a visualization.
        * @type {function}
        */
-      getVisBrushHandler: '&',
+      getVisBrushHandler: '=',
       /**
        * Call when changes should be propagated to the url and thus saved in state.
        * @type {function}
@@ -101,10 +112,18 @@ app.directive('dashboardGrid', function ($compile, Notifier) {
             stop: readGridsterChangeHandler
           },
           draggable: {
-            handle: '.panel-move, .fa-arrows',
+            handle: '[data-dashboard-panel-drag-handle]',
             stop: readGridsterChangeHandler
           }
         }).data('gridster');
+
+        function setResizeCapability() {
+          if ($scope.dashboardViewMode === DashboardViewMode.VIEW) {
+            gridster.disable_resize();
+          } else {
+            gridster.enable_resize();
+          }
+        }
 
         // This is necessary to enable text selection within gridster elements
         // http://stackoverflow.com/questions/21561027/text-not-selectable-from-editable-div-which-is-draggable
@@ -112,16 +131,37 @@ app.directive('dashboardGrid', function ($compile, Notifier) {
           gridster.disable().disable_resize();
         });
         binder.jqOn($el, 'mouseup', function enableResize() {
-          gridster.enable().enable_resize();
+          gridster.enable();
+          setResizeCapability();
+        });
+
+        $scope.$watch('dashboardViewMode', () => {
+          setResizeCapability();
         });
 
         $scope.$watchCollection('panels', function (panels) {
           const currentPanels = gridster.$widgets.toArray().map(
-            el => PanelUtils.findPanelByPanelIndex(el.panelIndex, $scope.panels)
+            el => {
+              const panel = PanelUtils.findPanelByPanelIndex(el.panelIndex, $scope.panels);
+              if (panel) {
+                // A panel may have had its state updated, refresh gridster with the latest values.
+                const panelElement = panelElementMapping[panel.panelIndex];
+                PanelUtils.refreshElementSizeAndPosition(panel, panelElement);
+                return panel;
+              } else {
+                return { panelIndex: el.panelIndex };
+              }
+            }
           );
 
-          // panels that have been added
+          // Panels in the grid that are missing from the panels array. This can happen if the url is modified, and a
+          // panel is manually removed.
+          const removed = _.difference(currentPanels, panels);
+          // Panels that have been added.
           const added = _.difference(panels, currentPanels);
+
+          removed.forEach(panel => $scope.removePanel(panel.panelIndex));
+
           if (added.length) {
             // See issue https://github.com/elastic/kibana/issues/2138 and the
             // subsequent fix for why we need to sort here. Short story is that
@@ -139,9 +179,10 @@ app.directive('dashboardGrid', function ($compile, Notifier) {
             added.forEach(addPanel);
           }
 
-          if (added.length) {
+          if (added.length || removed.length) {
             $scope.saveState();
           }
+          layout();
         });
 
         $scope.$on('$destroy', function () {
@@ -173,9 +214,11 @@ app.directive('dashboardGrid', function ($compile, Notifier) {
                   panel="findPanelByPanelIndex(${panel.panelIndex}, panels)"
                   is-full-screen-mode="isFullScreenMode"
                   is-expanded="false"
-                  get-vis-click-handler="getVisClickHandler(state)"
-                  get-vis-brush-handler="getVisBrushHandler(state)"
+                  dashboard-view-mode="dashboardViewMode"
+                  get-vis-click-handler="getVisClickHandler"
+                  get-vis-brush-handler="getVisBrushHandler"
                   save-state="saveState"
+                  register-panel-index-pattern="registerPanelIndexPattern"
                   toggle-expand="toggleExpand(${panel.panelIndex})"
                   create-child-ui-state="createChildUiState">
             </li>`;

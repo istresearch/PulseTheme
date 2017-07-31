@@ -1,7 +1,7 @@
 import ngMock from 'ng_mock';
 import expect from 'expect.js';
 import _ from 'lodash';
-import sinon from 'auto-release-sinon';
+import sinon from 'sinon';
 
 describe('pattern checker', function () {
   let $httpBackend;
@@ -21,7 +21,7 @@ describe('pattern checker', function () {
     });
   }));
 
-  beforeEach(ngMock.inject(function ($injector, Private) {
+  beforeEach(ngMock.inject(function ($injector) {
     $httpBackend = $injector.get('$httpBackend');
     $compile = $injector.get('$compile');
     $rootScope = $injector.get('$rootScope');
@@ -69,7 +69,7 @@ describe('pattern checker', function () {
   it('should throw a fatal notificaiton for any error other than a 404', function () {
     apiResponse.respond(500, 'Bad things happened');
 
-    const element = $compile('<pattern-checker pattern="logstash"></pattern-checker>')($rootScope);
+    $compile('<pattern-checker pattern="logstash"></pattern-checker>')($rootScope);
 
     $httpBackend.flush();
     $rootScope.$digest();

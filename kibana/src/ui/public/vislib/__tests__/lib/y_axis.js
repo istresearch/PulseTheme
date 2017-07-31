@@ -3,13 +3,11 @@ import d3 from 'd3';
 import ngMock from 'ng_mock';
 import expect from 'expect.js';
 import $ from 'jquery';
-import VislibLibDataProvider from 'ui/vislib/lib/data';
 import 'ui/persisted_state';
-import VislibLibYAxisProvider from 'ui/vislib/lib/axis';
-import VislibVisConfig from 'ui/vislib/lib/vis_config';
+import { VislibLibAxisProvider } from 'ui/vislib/lib/axis';
+import { VislibVisConfigProvider } from 'ui/vislib/lib/vis_config';
 
 let YAxis;
-let Data;
 let persistedState;
 let el;
 let buildYAxis;
@@ -95,10 +93,9 @@ describe('Vislib yAxis Class Test Suite', function () {
   beforeEach(ngMock.module('kibana'));
 
   beforeEach(ngMock.inject(function (Private, $injector) {
-    Data = Private(VislibLibDataProvider);
     persistedState = new ($injector.get('PersistedState'))();
-    YAxis = Private(VislibLibYAxisProvider);
-    VisConfig = Private(VislibVisConfig);
+    YAxis = Private(VislibLibAxisProvider);
+    VisConfig = Private(VislibVisConfigProvider);
 
     expect($('.y-axis-wrapper')).to.have.length(0);
   }));
@@ -318,9 +315,7 @@ describe('Vislib yAxis Class Test Suite', function () {
   });
 
   describe('getYAxis method', function () {
-    let mode;
     let yMax;
-    let yScale;
     beforeEach(function () {
       createData(defaultGraphData);
       yMax = yAxis.yMax;
@@ -346,7 +341,6 @@ describe('Vislib yAxis Class Test Suite', function () {
       const tickFormat = yAxis.getAxis().tickFormat();
       expect(tickFormat(0.8)).to.be('0.8');
     });
-
   });
 
   describe('draw Method', function () {

@@ -1,13 +1,11 @@
 import d3 from 'd3';
-import angular from 'angular';
 import _ from 'lodash';
 import ngMock from 'ng_mock';
 import expect from 'expect.js';
-import $ from 'jquery';
-import VislibLibAxisTitleProvider from 'ui/vislib/lib/axis/axis_title';
-import VislibLibAxisConfigProvider from 'ui/vislib/lib/axis/axis_config';
-import VislibLibVisConfigProvider from 'ui/vislib/lib/vis_config';
-import VislibLibDataProvider from 'ui/vislib/lib/data';
+import { VislibLibAxisTitleProvider } from 'ui/vislib/lib/axis/axis_title';
+import { VislibLibAxisConfigProvider } from 'ui/vislib/lib/axis/axis_config';
+import { VislibVisConfigProvider } from 'ui/vislib/lib/vis_config';
+import { VislibLibDataProvider } from 'ui/vislib/lib/data';
 import 'ui/persisted_state';
 
 describe('Vislib AxisTitle Class Test Suite', function () {
@@ -16,7 +14,6 @@ describe('Vislib AxisTitle Class Test Suite', function () {
   let VisConfig;
   let Data;
   let PersistedState;
-  let axisTitle;
   let el;
   let dataObj;
   let xTitle;
@@ -84,7 +81,7 @@ describe('Vislib AxisTitle Class Test Suite', function () {
   beforeEach(ngMock.inject(function (Private, $injector) {
     AxisTitle = Private(VislibLibAxisTitleProvider);
     AxisConfig = Private(VislibLibAxisConfigProvider);
-    VisConfig = Private(VislibLibVisConfigProvider);
+    VisConfig = Private(VislibVisConfigProvider);
     Data = Private(VislibLibDataProvider);
     PersistedState = $injector.get('PersistedState');
 
@@ -157,5 +154,4 @@ describe('Vislib AxisTitle Class Test Suite', function () {
       expect(_.isFunction(xTitle.draw())).to.be(true);
     });
   });
-
 });

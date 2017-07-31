@@ -1,8 +1,6 @@
 import _ from 'lodash';
-import uiModules from 'ui/modules';
+import { uiModules } from 'ui/modules';
 import paginateControlsTemplate from 'ui/partials/paginate_controls.html';
-
-const PER_PAGE_DEFAULT = 10;
 
 uiModules.get('kibana')
 .directive('paginate', function ($parse, $compile) {
@@ -63,7 +61,6 @@ uiModules.get('kibana')
           self.otherWidthGetter
         ], function (vals, oldVals) {
           const intChanges = vals[0] !== oldVals[0];
-          const extChanges = vals[1] !== oldVals[1];
 
           if (intChanges) {
             if (!setPerPage(self.perPage)) {
@@ -125,6 +122,8 @@ uiModules.get('kibana')
           page.count = count;
           page.first = page.number === 1;
           page.last = page.number === count;
+          page.firstItem = (page.number - 1) * perPage + 1;
+          page.lastItem = Math.min(page.number * perPage, $scope.list.length);
 
           page.prev = $scope.pages[i - 1];
           if (page.prev) page.prev.next = page;
@@ -137,6 +136,10 @@ uiModules.get('kibana')
           $scope.page = $scope.pages[$scope.page.i];
         } else {
           $scope.page = $scope.pages[0];
+        }
+
+        if ($scope.page && $scope.onPageChanged) {
+          $scope.onPageChanged($scope.page);
         }
       };
 
@@ -173,6 +176,10 @@ uiModules.get('kibana')
           $scope.otherPages.push(other);
           if (other.last) $scope.otherPages.containsLast = true;
           if (other.first) $scope.otherPages.containsFirst = true;
+        }
+
+        if ($scope.onPageChanged) {
+          $scope.onPageChanged($scope.page);
         }
       };
 

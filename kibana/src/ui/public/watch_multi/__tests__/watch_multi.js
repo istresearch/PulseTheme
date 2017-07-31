@@ -2,7 +2,7 @@
 import _ from 'lodash';
 import ngMock from 'ng_mock';
 import expect from 'expect.js';
-import sinon from 'auto-release-sinon';
+import sinon from 'sinon';
 
 describe('$scope.$watchMulti', function () {
 
@@ -66,7 +66,7 @@ describe('$scope.$watchMulti', function () {
     });
 
     it('only triggers a single watch when multiple values change', function () {
-      const stub = sinon.spy(function (a, b) {});
+      const stub = sinon.spy(function () {});
 
       $scope.$watchMulti([
         'one',
@@ -87,7 +87,7 @@ describe('$scope.$watchMulti', function () {
 
     it('passes an array of the current and previous values, in order',
     function () {
-      const stub = sinon.spy(function (a, b) {});
+      const stub = sinon.spy(function () {});
 
       $scope.one = 'a';
       $scope.two = 'b';
@@ -119,7 +119,7 @@ describe('$scope.$watchMulti', function () {
       let count = 0;
 
       $scope.vals = [1, 0];
-      $scope.$watchMulti([ 'vals[0]', 'vals[1]' ], function (cur, prev) {
+      $scope.$watchMulti([ 'vals[0]', 'vals[1]' ], function (cur) {
         expect(cur).to.eql($scope.vals);
         count++;
       });

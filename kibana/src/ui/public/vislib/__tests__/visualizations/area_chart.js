@@ -3,8 +3,6 @@ import expect from 'expect.js';
 import ngMock from 'ng_mock';
 import _ from 'lodash';
 
-import woahLotsOfVariables from 'fixtures/vislib/mock_data/date_histogram/_series';
-import notQuiteEnoughVariables from 'fixtures/vislib/mock_data/not_enough_data/_one_point';
 import $ from 'jquery';
 import FixturesVislibVisFixtureProvider from 'fixtures/vislib/_vis_fixture';
 import 'ui/persisted_state';
@@ -42,42 +40,6 @@ _.forOwn(dataTypesArray, function (dataType, dataTypeName) {
       vis.destroy();
     });
 
-    describe('checkIfEnoughData method throws an error when not enough data', function () {
-      beforeEach(function () {
-        ngMock.inject(function () {
-          vis.render(notQuiteEnoughVariables, persistedState);
-        });
-      });
-
-      it('should throw a Not Enough Data Error', function () {
-        vis.handler.charts.forEach(function (chart) {
-          chart.series.forEach(function (series) {
-            expect(function () {
-              series.checkIfEnoughData();
-            }).to.throwError();
-          });
-        });
-      });
-    });
-
-    describe('checkIfEnoughData method should not throw an error when enough data', function () {
-      beforeEach(function () {
-        ngMock.inject(function () {
-          vis.render(woahLotsOfVariables, persistedState);
-        });
-      });
-
-      it('should not throw a Not Enough Data Error', function () {
-        vis.handler.charts.forEach(function (chart) {
-          chart.series.forEach(function (series) {
-            expect(function () {
-              series.checkIfEnoughData();
-            }).to.not.throwError();
-          });
-        });
-      });
-    });
-
     describe('stackData method', function () {
       let stackedData;
       let isStacked;
@@ -103,6 +65,28 @@ _.forOwn(dataTypesArray, function (dataType, dataTypeName) {
       it('should append a area paths', function () {
         vis.handler.charts.forEach(function (chart) {
           expect($(chart.chartEl).find('path').length).to.be.greaterThan(0);
+        });
+      });
+    });
+
+    describe('addPathEvents method', function () {
+      let path;
+      let d3selectedPath;
+      let onMouseOver;
+
+      beforeEach(ngMock.inject(function () {
+        vis.handler.charts.forEach(function (chart) {
+          path = $(chart.chartEl).find('path')[0];
+          d3selectedPath = d3.select(path)[0][0];
+
+          // d3 instance of click and hover
+          onMouseOver = (!!d3selectedPath.__onmouseover);
+        });
+      }));
+
+      it('should attach a hover event', function () {
+        vis.handler.charts.forEach(function () {
+          expect(onMouseOver).to.be(true);
         });
       });
     });
@@ -201,21 +185,6 @@ _.forOwn(dataTypesArray, function (dataType, dataTypeName) {
           if (yAxis.yMin < 0 && yAxis.yMax > 0) {
             expect($(chart.chartEl).find('line.zero-line').length).to.be(1);
           }
-        });
-      });
-    });
-
-    describe('containerTooSmall error', function () {
-      beforeEach(function () {
-        $(vis.el).height(0);
-        $(vis.el).width(0);
-      });
-
-      it('should throw an error', function () {
-        vis.handler.charts.forEach(function (chart) {
-          expect(function () {
-            chart.render();
-          }).to.throwError();
         });
       });
     });

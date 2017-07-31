@@ -1,6 +1,5 @@
 import expect from 'expect.js';
-import { noop } from 'lodash';
-import rename from '../rename';
+import { rename } from '../rename';
 import sinon from 'sinon';
 
 describe('deprecation/deprecations', function () {

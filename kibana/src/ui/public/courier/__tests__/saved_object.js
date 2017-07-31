@@ -1,19 +1,13 @@
-/**
- * Tests functionality in ui/public/courier/saved_object/saved_object.js
- */
-
-import angular from 'angular';
 import ngMock from 'ng_mock';
 import expect from 'expect.js';
-import sinon from 'auto-release-sinon';
+import sinon from 'sinon';
 import BluebirdPromise from 'bluebird';
 
-import SavedObjectFactory from '../saved_object/saved_object';
-import IndexPatternFactory from 'ui/index_patterns/_index_pattern';
-import DocSourceProvider from '../data_source/admin_doc_source';
+import { SavedObjectProvider } from '../saved_object/saved_object';
+import { IndexPatternProvider } from 'ui/index_patterns/_index_pattern';
+import { AdminDocSourceProvider } from '../data_source/admin_doc_source';
 
-import { stubMapper } from 'test_utils/stub_mapper';
-
+import { StubIndexPatternsApiClientModule } from '../../index_patterns/__tests__/stub_index_patterns_api_client';
 
 describe('Saved Object', function () {
   require('test_utils/no_digest_promises').activateForSuite();
@@ -69,6 +63,9 @@ describe('Saved Object', function () {
    * @param {Object} mockDocResponse
    */
   function stubESResponse(mockDocResponse) {
+    // Stub out search for duplicate title:
+    sinon.stub(esAdminStub, 'search').returns(BluebirdPromise.resolve({ hits: { total: 0 } }));
+
     sinon.stub(esDataStub, 'mget').returns(BluebirdPromise.resolve({ docs: [mockDocResponse] }));
     sinon.stub(esDataStub, 'index').returns(BluebirdPromise.resolve(mockDocResponse));
     sinon.stub(esAdminStub, 'mget').returns(BluebirdPromise.resolve({ docs: [mockDocResponse] }));
@@ -85,10 +82,13 @@ describe('Saved Object', function () {
    */
   function createInitializedSavedObject(config = {}) {
     const savedObject = new SavedObject(config);
+    savedObject.title = 'my saved object';
     return savedObject.init();
   }
 
-  beforeEach(ngMock.module('kibana',
+  beforeEach(ngMock.module(
+    'kibana',
+    StubIndexPatternsApiClientModule,
     // Use the native window.confirm instead of our specialized version to make testing
     // this easier.
     function ($provide) {
@@ -98,15 +98,14 @@ describe('Saved Object', function () {
   );
 
   beforeEach(ngMock.inject(function (es, esAdmin, Private, $window) {
-    SavedObject = Private(SavedObjectFactory);
-    IndexPattern = Private(IndexPatternFactory);
+    SavedObject = Private(SavedObjectProvider);
+    IndexPattern = Private(IndexPatternProvider);
     esAdminStub = esAdmin;
     esDataStub = es;
-    DocSource = Private(DocSourceProvider);
+    DocSource = Private(AdminDocSourceProvider);
     window = $window;
 
     mockEsService();
-    stubMapper(Private);
   }));
 
   describe('save', function () {
@@ -271,13 +270,14 @@ describe('Saved Object', function () {
           });
           expect(savedObject.isSaving).to.be(false);
           return savedObject.save()
-            .then((id) => {
+            .then(() => {
               expect(savedObject.isSaving).to.be(false);
             });
         });
       });
 
       it('on failure', function () {
+        stubESResponse(getMockedDocResponse('id'));
         return createInitializedSavedObject({ type: 'dashboard' }).then(savedObject => {
           sinon.stub(DocSource.prototype, 'doIndex', () => {
             expect(savedObject.isSaving).to.be(true);

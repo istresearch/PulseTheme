@@ -1,16 +1,13 @@
-import _ from 'lodash';
-import Scanner from 'ui/utils/scanner';
 import 'plugins/kibana/dashboard/saved_dashboard/saved_dashboard';
-import uiModules from 'ui/modules';
-const module = uiModules.get('app/dashboard');
+import { uiModules } from 'ui/modules';
 import { SavedObjectLoader } from 'ui/courier/saved_object/saved_object_loader';
+import { savedObjectManagementRegistry } from 'plugins/kibana/management/saved_object_registry';
 
-// bring in the factory
-
+const module = uiModules.get('app/dashboard');
 
 // Register this service with the saved object registry so it can be
 // edited by the object editor.
-require('plugins/kibana/management/saved_object_registry').register({
+savedObjectManagementRegistry.register({
   service: 'savedDashboards',
   title: 'dashboards'
 });

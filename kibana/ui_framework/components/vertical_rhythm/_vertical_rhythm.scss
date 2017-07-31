@@ -1,6 +1,11 @@
 .kuiVerticalRhythm {
   & + & {
-    margin-top: $verticalRhythm;
-      background-color: #272727;
+    margin-top: $verticalRhythmSpacing;
+  }
+}
+
+.kuiVerticalRhythmSmall {
+  & + & {
+    margin-top: $verticalRhythmSmallSpacing;
   }
 }

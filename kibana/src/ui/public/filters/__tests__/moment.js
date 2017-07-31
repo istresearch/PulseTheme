@@ -1,35 +1,35 @@
-import angular from 'angular';
 import expect from 'expect.js';
-import sinon from 'auto-release-sinon';
+import sinon from 'sinon';
 import moment from 'moment';
 import ngMock from 'ng_mock';
 import 'ui/filters/moment';
 
 
 let filter;
-
-let config;
 const anchor = '2014-01-01T06:06:06.666';
-let clock;
 
-const init = function (expandable) {
+const init = function () {
   // Load the application
   ngMock.module('kibana');
 
-  clock = sinon.useFakeTimers(moment(anchor).valueOf());
-
   // Create the scope
-  ngMock.inject(function ($filter, _config_) {
+  ngMock.inject(function ($filter) {
     filter = $filter('moment');
-    config = _config_;
   });
 };
 
 
 describe('moment formatting filter', function () {
+  const sandbox = sinon.sandbox.create();
 
   beforeEach(function () {
+    sandbox.useFakeTimers(moment(anchor).valueOf());
+
     init();
+  });
+
+  afterEach(function () {
+    sandbox.restore();
   });
 
   it('should have a moment filter', function () {

@@ -1,4 +1,3 @@
-import angular from 'angular';
 import expect from 'expect.js';
 import ngMock from 'ng_mock';
 import 'ui/directives/validate_index_name';
@@ -47,6 +46,7 @@ describe('Validate index name directive', function () {
     'foo',
     'foo.bar',
     '[foo-]YYYY-MM-DD',
+    'foo:bar',
   ];
 
   const wildcardPatterns = [

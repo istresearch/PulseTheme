@@ -2,15 +2,14 @@ import 'ui/field_format_editor';
 import 'angular-bootstrap-colorpicker';
 import 'angular-bootstrap-colorpicker/css/colorpicker.css';
 import _ from 'lodash';
-import RegistryFieldFormatsProvider from 'ui/registry/field_formats';
-import IndexPatternsFieldProvider from 'ui/index_patterns/_field';
-import uiModules from 'ui/modules';
+import { RegistryFieldFormatsProvider } from 'ui/registry/field_formats';
+import { IndexPatternsFieldProvider } from 'ui/index_patterns/_field';
+import { uiModules } from 'ui/modules';
 import fieldEditorTemplate from 'ui/field_editor/field_editor.html';
-import chrome from 'ui/chrome';
-import IndexPatternsCastMappingTypeProvider from 'ui/index_patterns/_cast_mapping_type';
-import { scriptedFields as docLinks } from '../documentation_links/documentation_links';
+import { documentationLinks } from '../documentation_links/documentation_links';
 import './field_editor.less';
 import { GetEnabledScriptingLangsProvider, getSupportedScriptingLangs } from '../scripting_langs';
+import { getKbnTypeNames } from '../../../utils';
 
 uiModules
 .get('kibana', ['colorpicker.module'])
@@ -22,7 +21,7 @@ uiModules
   const fieldTypesByLang = {
     painless: ['number', 'string', 'date', 'boolean'],
     expression: ['number'],
-    default: _.keys(Private(IndexPatternsCastMappingTypeProvider).types.byType)
+    default: getKbnTypeNames()
   };
 
   return {
@@ -33,11 +32,11 @@ uiModules
       getField: '&field'
     },
     controllerAs: 'editor',
-    controller: function ($scope, Notifier, kbnUrl, $http, $q) {
+    controller: function ($scope, Notifier, kbnUrl) {
       const self = this;
       const notify = new Notifier({ location: 'Field Editor' });
 
-      self.docLinks = docLinks;
+      self.docLinks = documentationLinks.scriptedFields;
       getEnabledScriptingLangs().then((langs) => {
         self.scriptingLangs = langs;
         if (!_.includes(self.scriptingLangs, self.field.lang)) {
@@ -52,6 +51,7 @@ uiModules
 
       // only init on first create
       self.creating = !self.indexPattern.fields.byName[self.field.name];
+      self.existingFieldNames = self.indexPattern.fields.map(field => field.name); //used for mapping conflict validation
       self.selectedFormatId = _.get(self.indexPattern, ['fieldFormatMap', self.field.name, 'type', 'id']);
       self.defFormatType = initDefaultFormat();
 
@@ -61,8 +61,12 @@ uiModules
         const fields = indexPattern.fields;
         const field = self.field.toActualField();
 
-        fields.remove({ name: field.name });
-        fields.push(field);
+        const index = fields.findIndex(f => f.name === field.name);
+        if (index > -1) {
+          fields.splice(index, 1, field);
+        } else {
+          fields.push(field);
+        }
 
         if (!self.selectedFormatId) {
           delete indexPattern.fieldFormatMap[field.name];

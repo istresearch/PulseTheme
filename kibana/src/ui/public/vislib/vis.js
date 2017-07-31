@@ -1,17 +1,18 @@
 import _ from 'lodash';
 import d3 from 'd3';
-import Binder from 'ui/binder';
-import errors from 'ui/errors';
-import EventsProvider from 'ui/events';
+import { Binder } from 'ui/binder';
+import { KbnError } from 'ui/errors';
+import { EventsProvider } from 'ui/events';
 import './styles/main.less';
-import VislibLibResizeCheckerProvider from './lib/resize_checker';
-import VisConifgProvider from './lib/vis_config';
-import VisHandlerProvider from './lib/handler';
 
-export default function VisFactory(Private) {
-  const ResizeChecker = Private(VislibLibResizeCheckerProvider);
+import { ResizeCheckerProvider } from './lib/resize_checker';
+import { VislibVisConfigProvider } from './lib/vis_config';
+import { VisHandlerProvider } from './lib/handler';
+
+export function VislibVisProvider(Private) {
+  const ResizeChecker = Private(ResizeCheckerProvider);
   const Events = Private(EventsProvider);
-  const VisConfig = Private(VisConifgProvider);
+  const VisConfig = Private(VislibVisConfigProvider);
   const Handler = Private(VisHandlerProvider);
 
   /**
@@ -110,7 +111,7 @@ export default function VisFactory(Private) {
         this.handler[method]();
       } catch (error) {
 
-        if (error instanceof errors.KbnError) {
+        if (error instanceof KbnError) {
           error.displayToScreen(this.handler);
         } else {
           throw error;
