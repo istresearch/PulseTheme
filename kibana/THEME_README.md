@@ -1,6 +1,6 @@
-# Kibana THEME (5.3.0)
+# Kibana THEME (5.5.1)
 
-Kibana 5.3.0 is going through a major refactor and building the css files isn't straight forward as there are several build tools compiling the css (Grunt, Gulp, and Webkit).  
+Kibana 5.5.1 is going through a major refactor and building the css files isn't straight forward as there are several build tools compiling the css (Grunt, Gulp, and Webkit).  
 
 - LESS files compile in the background on save. SASS files need to have uiFramework:start running in the background. 
 
