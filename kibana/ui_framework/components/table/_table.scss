@@ -14,9 +14,9 @@
  */
 .kuiTable {
   width: 100%;
-  border: $globalBorderThick;
+  //border: $globalBorderThick;
   border-collapse: collapse;
-  background-color: $tableBackgroundColor;
+  background-color: #272727;
 }
 
 /**
@@ -35,7 +35,8 @@
   @include tableCell;
   padding: $tableCellPadding;
   line-height: $globalLineHeight;
-  color: $tableHeaderTextColor;
+  color: #cecece;
+  border-bottom: 2px solid #5c5c5c;
 }
 
 .kuiTableHeaderCell__liner {
@@ -78,8 +79,8 @@
 
 .kuiTableRowCell {
   @include tableCell;
-  color: $globalFontColor;
-  border-top: $globalBorderThin;
+  color: $globalTextColor--darkTheme;
+  border-top: 1px solid #5c5c5c;
 }
 
 .kuiTableRowCell--wrap {

@@ -46,6 +46,7 @@
 
   vis-editor-agg-group {
     .flex-parent(0, 1, auto);
+      color: #cecece;
   }
 
 
@@ -110,6 +111,7 @@
 
         label {
           margin-bottom: 0px;
+          color: #cecece;
         }
       }
     }
@@ -182,11 +184,13 @@
         flex: 1 1 auto;
         .ellipsis();
         font-weight: bold;
+        color: #cecece;
       }
 
       .vis-editor-agg-header-description {
         font-weight: normal;
         padding-right: @vis-editor-agg-editor-spacing;
+        color: #cecece;
 
         &.danger {
           .text-danger();
@@ -277,7 +281,7 @@
 
     .vis-editor-agg-order-agg {
       border: 2px solid;
-      border-color: @vis-editor-agg-editor-order-border;
+      border-color: #666;
       border-radius: @border-radius-base;
       background-color: @vis-editor-agg-editor-order-bg;
       margin: @vis-editor-agg-editor-spacing;
@@ -291,9 +295,9 @@
   .vis-editor-field-ui-select {
     .ui-select-match {
       .btn {
-        border: 2px solid #ecf0f1; /* 1 */
-        background-color: white; /* 1 */
-        color: black; /* 1 */
+        border: 2px solid #666; /* 1 */
+        background-color: #444; /* 1 */
+        color: #cecece; /* 1 */
       }
     }
 
@@ -355,12 +359,12 @@ vis-editor-vis-options > * {
    */
 .vis-editor-subnav-link {
   padding: 4px 10px 5px 10px !important; /* 1 */
-  color: @kibanaGray2 !important; /* 1 */
+  color: #cecece !important; /* 1 */
 
   &.is-vis-editor-sub-nav-link-selected {
     border-bottom: 2px solid @kibanaGray2;
     color: @kibanaGray1;
-    background-color: #f6f6f6;
+    background-color: #525252;
 
     &:before {
       display: none;
