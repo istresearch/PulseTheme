@@ -133,7 +133,7 @@
   font-size: $globalFontSize;
   font-weight: 400;
   line-height: $globalLineHeight;
-  color: $globalFontColor;
+  color: $globalInputTextColor--darkTheme;
 
   @include darkTheme {
     color: $globalInputTextColor--darkTheme;
