@@ -10,17 +10,17 @@
   padding: 0 $localNavSideSpacing;
   font-size: $globalFontSize;
   background-color: $localNavButtonBackgroundColor;
-  color: $localNavButtonTextColor;
+  color: $localNavButtonTextColor--darkTheme;
   border: 0;
   cursor: pointer;
 
   &:hover {
-    background-color: $localNavButtonBackgroundColor-isHover;
-    color: $localNavButtonTextColor-isHover;
+    background-color: $localNavButtonBackgroundColor-isHover--darkTheme;
+    color: $localNavButtonTextColor-isHover--darkTheme;
   }
 
   &.kuiLocalMenuItem-isSelected {
-    background-color: $localNavButtonBackgroundColor-isSelected;
+    background-color: $localNavButtonBackgroundColor-isSelected--darkTheme;
   }
 
   &.kuiLocalMenuItem-isDisabled {
@@ -28,8 +28,8 @@
     cursor: default;
 
     &:hover {
-      background-color: $localNavButtonBackgroundColor;
-      color: $localNavButtonTextColor;
+      background-color: transparent;
+      color: $localNavButtonTextColor--darkTheme;
     }
   }
 

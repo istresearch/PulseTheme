@@ -24,21 +24,21 @@
   background-color: transparent;
   border: none;
   font-size: $globalSubTextFontSize;
-  color: $localNavButtonTextColor;
+  color: $localNavButtonTextColor--darkTheme;
   padding: $localDatePickerButtonPadding;
   border-radius: $globalBorderRadius;
 
   &:hover,
   &:active {
     cursor: pointer;
-    color: $localNavButtonTextColor-isHover;
-    background-color: $localDatePickerButtonHoverBackgroundColor;
+    color: $localNavButtonTextColor-isHover--darkTheme;
+    background-color: $localDatePickerButtonHoverBackgroundColor--darkTheme;
   }
 
   &:focus {
-    @include focus($globalFocusColor, $localDropdownBackgroundColor);
+    @include focus($globalFocusColor, $localDropdownBackgroundColor--darkTheme);
 
-    color: $localNavButtonTextColor; /* 1 */
+    color: $localNavButtonTextColor--darkTheme; /* 1 */
   }
 
   @include darkTheme {
@@ -60,7 +60,7 @@
 
 .kuiDatePickerHeaderCell {
   padding: $localDatePickerHeaderCellPadding;
-  color: $localNavTextColor;
+  color: $globalTextColor--darkTheme;
   font-size: $globalSubTextFontSize;
   font-weight: bold;
   text-align: center;
@@ -97,16 +97,16 @@
   background-color: transparent;
   width: 100%;
   border: 1px solid transparent;
-  color: $localNavTextColor;
+  color: $localNavTextColor--darkTheme;
   font-size: $globalSubTextFontSize;
   padding: $localDatePickerCellPadding;
   border-radius: $globalBorderRadius;
   line-height: $localDatePickerCellLineHeight;
 
   &:focus {
-    @include focus($globalFocusColor, $localDropdownBackgroundColor);
+    @include focus($globalFocusColor, $localDropdownBackgroundColor--darkTheme);
 
-    color: $localNavTextColor; /* 1 */
+    color: $localNavTextColor--darkTheme; /* 1 */
   }
 
   &:disabled {
@@ -120,19 +120,19 @@
   }
 
   &.kuiDatePickerRowCellContent-isCurrent {
-    color: $globalLinkColor;
+    color: $globalLinkColor--darkTheme;
   }
 
   &.kuiDatePickerRowCellContent-isSelected {
     background-color: $localDatePickerCellSelectedBackgroundColor;
-    color: $localDatePickerCellSelectedTextColor;
+    color: $localDatePickerCellSelectedTextColor--darkTheme;
   }
 
   &:hover,
   &:active {
     cursor: pointer;
-    color: $localNavButtonTextColor-isHover;
-    background-color: $localDatePickerButtonHoverBackgroundColor;
+    color: $localNavButtonTextColor-isHover--darkTheme;
+    background-color: $localDatePickerButtonHoverBackgroundColor--darkTheme;
   }
 
   @include darkTheme {

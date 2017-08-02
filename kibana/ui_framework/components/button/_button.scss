@@ -81,20 +81,21 @@
  * 1. Override Bootstrap.
  */
 .kuiButton--basic {
-  color: $buttonBasicTextColor;
-  background-color: $buttonBasicBackgroundColor;
+  color: $buttonBasicTextColor--darkTheme;
+  background-color: $buttonBasicBackgroundColor--darkTheme;
 
   @include kuiButtonFocus {
-    color: $buttonBasicTextColor;
+    @include focus($globalFocusColor, $globalBackgroundColor--darkTheme);
+    color: $buttonBasicTextColor--darkTheme;
   }
 
   @include kuiButtonHoverAndActive {
-    color: $buttonDefaultTextColor !important; /* 1 */
-    background-color: $buttonBasicHoverBackgroundColor !important; /* 1 */
+    color: $buttonBasicTextColor--darkTheme !important; /* 1 */
+    background-color: $buttonBasicHoverBackgroundColor--darkTheme !important; /* 1 */
   }
 
   @include kuiButtonDisabled {
-    color: $buttonBasicDisabledTextColor;
+    color: rgba($buttonBasicTextColor--darkTheme, 0.5);
   }
 
   @include darkTheme {

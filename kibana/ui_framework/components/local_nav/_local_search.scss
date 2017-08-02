@@ -6,13 +6,14 @@
 .kuiLocalSearchInput {
   @include formControl;
   flex: 1 1 100%;
-  border-color: $localSearchBackgroundColor;
-  border-top-color: $localSearchBackgroundColor;
-  border-bottom-color: $localSearchBackgroundColor;
+  border-color: $localSearchBackgroundColor--darkTheme;
+  border-top-color: $localSearchBackgroundColor--darkTheme;
+  border-bottom-color: $localSearchBackgroundColor--darkTheme;
   border-radius: $globalBorderRadius 0 0 $globalBorderRadius;
+    background-color: $localSearchBackgroundColor--darkTheme;
 
   &.kuiLocalSearchInput-isInvalid {
-    border-color: $localSearchBorderColor-isInvalid;
+    border-color: localSearchBorderColor-isInvalid--darkTheme;
   }
 }
 
@@ -20,7 +21,7 @@
   height: $localSearchHeight;
   flex: 0 0 auto;
   border-radius: 0;
-  border-left-color: $globalFormControlBorderColor;
+  border-left-color: $localNavBackgroundColor--darkTheme;
 
   @include darkTheme {
     border-left-color: $localNavBackgroundColor--darkTheme;
@@ -47,7 +48,7 @@
 .kuiLocalSearchSelect {
   @include select;
 
-  border-color: $localSearchBackgroundColor;
+  border-color: $localSearchBackgroundColor--darkTheme;
   border-left-color: $globalFormControlBorderColor;
   border-radius: 0;
 }
@@ -60,13 +61,13 @@
   height: $localSearchHeight;
   font-size: $globalFontSize;
   line-height: 0; /* 1 */
-  color: $localSearchButtonTextColor;
-  background-color: $localSearchButtonBackgroundColor;
+  color: $localSearchButtonTextColor--darkTheme;
+  background-color: $localSearchButtonBackgroundColor--darkTheme;
   border: 0;
   border-radius: 0 $globalBorderRadius $globalBorderRadius 0;
 
   &:focus {
-    @include focus($globalFocusColor, $globalBorderColor);
+    @include focus($globalFocusColor, $localNavBackgroundColor--darkTheme);
   }
 
   @include darkTheme {

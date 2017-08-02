@@ -29,4 +29,6 @@ $searchInputTextColor: #ACACAC;
     @include formControl;
     padding-left: 28px; /* 1 */
     width: 100%; /* 2 */
+    background-color:  #4e4e4e;
+    color: #cecece;
   }

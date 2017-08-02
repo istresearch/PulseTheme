@@ -2,6 +2,7 @@
 @import (reference) "./mixins";
 @import (reference) "./variables";
 @import (reference) "~ui/styles/bootstrap/bootstrap";
+@import "~ui/styles/dark-variables.less";
 
 html,
 body {
@@ -243,16 +244,16 @@ paginated-selectable-list {
     }
 
     li:nth-child(odd) {
-      background-color: @kibanaGray6;
+      background-color: @gray3;
     }
 
     li:nth-child(even) {
-      background-color: @white;
+      background-color: @gray4;
     }
 
     .paginate-heading {
       font-weight: normal;
-      color: @kibanaGray1;
+      color: @text-color;
     }
 
     .list-group-item {

@@ -20,7 +20,7 @@
       content: '/';
       user-select: none;
       margin-right: 4px;
-      color: $localNavBreadcrumbDelimiterColor;
+      color: $localNavBreadcrumbDelimiterColor--darkTheme;
 
       @include darkTheme {
         color: $localNavBreadcrumbDelimiterColor--darkTheme;
@@ -34,7 +34,7 @@
  */
 .kuiLocalBreadcrumb__link {
   @include link;
-  color: $localBreadcrumbLinkColor; /* 1 */
+  color: #b7e2ea; /* 1 */
   font-size: $globalFontSize;
 }
 
