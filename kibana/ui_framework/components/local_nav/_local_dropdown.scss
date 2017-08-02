@@ -15,6 +15,7 @@
   position: absolute;
   top: 1px;
   right: 5px;
+  color: $localNavTextColor--darkTheme !important;
 
   @include darkTheme {
     color: $localNavTextColor--darkTheme !important; /* 1 */

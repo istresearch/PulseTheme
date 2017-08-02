@@ -10,7 +10,8 @@
   border-top-color: $localSearchBackgroundColor--darkTheme;
   border-bottom-color: $localSearchBackgroundColor--darkTheme;
   border-radius: $globalBorderRadius 0 0 $globalBorderRadius;
-    background-color: $localSearchBackgroundColor--darkTheme;
+  background-color: $localSearchBackgroundColor--darkTheme;
+  color: $localNavButtonTextColor--darkTheme;
 
   &.kuiLocalSearchInput-isInvalid {
     border-color: localSearchBorderColor-isInvalid--darkTheme;
