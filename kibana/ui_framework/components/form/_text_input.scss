@@ -1,5 +1,7 @@
 .kuiTextInput {
   @include formControl;
+    background-color: #444444;
+    color: #cecece;
 
   &.kuiTextInput-isInvalid {
     @include formControlInvalid;

@@ -18,7 +18,7 @@
   }
 
   &:hover {
-    color: $globalLinkHoverColor;
+    color: $globalLinkColor--darkTheme;
     text-decoration: underline;
   }
 
@@ -41,7 +41,7 @@
   border: none;
   line-height: 1;
   font-size: 16px;
-  color: $globalTextColor !important; /* 1 */
+  color: #cecece !important; /* 1 */
   cursor: pointer;
   opacity: 0.35;
 
