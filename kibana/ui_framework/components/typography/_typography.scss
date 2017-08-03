@@ -24,7 +24,7 @@
 .kuiTextTitle {
   margin: 0; /* 1 */
   font-weight: $globalFontWeightBold; /* 1 */
-  color: $globalFontColor;
+  color: $globalTextColor--darkTheme;
   line-height: $globalLineHeight;
   font-size: $globalFontSize;
 }
@@ -43,7 +43,7 @@
 .kuiSubText {
   margin: 0; /* 1 */
   font-weight: $globalFontWeightRegular; /* 1 */
-  color: $globalFontColor;
+  color: $globalTextColor--darkTheme;
   line-height: $globalLineHeight;
   font-size: $globalSubTextFontSize;
 }

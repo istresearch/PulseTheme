@@ -1,5 +1,5 @@
 .kuiPanel {
-  border: $globalBorderThick;
+  border: 2px solid $globalInputBackgroundColor--darkTheme;
 }
 
 .kuiPanel--withHeader {
@@ -19,7 +19,7 @@
 
   padding: $panelPadding;
   height: $panelHeight;
-  background-color: $globalBorderColor;
+  background-color: $globalInputBackgroundColor--darkTheme;
 }
 
   .kuiPanelHeader__title {
