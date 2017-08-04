@@ -1,6 +1,6 @@
 .kuiTabs {
   display: flex;
-  border-bottom: $globalBorderThick;
+  border-bottom: 2px solid #5c5c5c;
 }
 
 /**
@@ -15,9 +15,9 @@
   cursor: pointer;
   padding: 10px 30px;
   font-size: $globalFontSize;
-  color: $globalSubduedTextColor;
-  background-color: $tabBackgroundColor; /* 1 */
-  border: 1px solid $globalBorderColor;
+  color: $localTabTextColor--darkTheme;
+  background-color: #444444; /* 1 */
+  border: 1px solid #5c5c5c;
   border-bottom-width: 2px;
   border-radius: 0; /* 1 */
   margin-bottom: -2px; /* 3 */
@@ -42,18 +42,18 @@
   &:focus:not(.kuiTab-isSelected):not(:active) {
     z-index: 1;
     color: $globalLinkColor;
-    border: 1px solid $globalSelectedBorderColor !important;
+    border: 1px solid #5c5c5c !important;
     padding-bottom: 11px; /* 4 */
   }
 
   &:hover:not(.kuiTab-isSelected) {
     color: $globalLinkHoverColor;
-    background-color: $tabHoverBackgroundColor;
+    background-color: #9c9c9c;
   }
 
   &.kuiTab-isSelected {
     cursor: default;
-    color: $globalFontColor;
-    border-bottom-color: $tabBackgroundColor;
+    color: $localTabTextColor-isSelected--darkTheme;
+    border-bottom-color: 2px solid #5c5c5c;
   }
 }

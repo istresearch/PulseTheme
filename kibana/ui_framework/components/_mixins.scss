@@ -142,7 +142,7 @@
 
 @mixin formControl($borderRadius: $globalBorderRadius) {
   @include formControlBase;
-  background-color: #ffffff;
+  background-color: $globalInputBackgroundColor--darkTheme;
   border: 1px solid $globalFormControlBorderColor;
   border-radius: $borderRadius;
   transition: border-color $globalInputTransitionTiming;
