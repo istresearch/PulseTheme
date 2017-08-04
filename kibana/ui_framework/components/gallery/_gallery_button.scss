@@ -9,13 +9,13 @@
   margin: 0 $galleryButtonRhythm $galleryButtonRhythm 0;
   padding: 25px 10px 10px;
   line-height: $globalLineHeight;
-  background-color: #F6F6F6;
+  background-color: #9c9c9c;
   border: 1px solid #CED5DA;
   border-radius: $globalBorderRadius;
   text-decoration: none;
 
   &:hover {
-    background-color: #FFFFFF;
+    background-color: dimgray;
     border-color: #00A6FF;
   }
 }
